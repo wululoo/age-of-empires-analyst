@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAnalyser", "GameAnalyse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeOfEmpiresLibrary", "AgeOfEmpiresLibrary\AgeOfEmpiresLibrary.csproj", "{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2B1FC01-C307-4E03-9AA8-B82D22B50100}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
