@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAnalyser", "GameAnalyser\GameAnalyser.csproj", "{79D052CD-B6C3-4DE7-AF34-468819CE696A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeOfEmpiresLibrary", "AgeOfEmpiresLibrary\AgeOfEmpiresLibrary.csproj", "{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{79D052CD-B6C3-4DE7-AF34-468819CE696A}.Debug|x86.Build.0 = Debug|x86
 		{79D052CD-B6C3-4DE7-AF34-468819CE696A}.Release|x86.ActiveCfg = Release|x86
 		{79D052CD-B6C3-4DE7-AF34-468819CE696A}.Release|x86.Build.0 = Release|x86
+		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Debug|x86.Build.0 = Debug|Any CPU
+		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Release|x86.ActiveCfg = Release|Any CPU
+		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
