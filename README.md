@@ -25,4 +25,5 @@ The current work is done on 5.1 HD version and seems to work on 5.2 and 5.3 HD v
 Feel free to suggest any pull request or give any advice : The more we work on it, the faster it goes !
 
 [0] https://web.archive.org/web/20090215065209/http://members.at.infoseek.co.jp/aocai/mgx_format.html
+
 [1] https://github.com/goto-bus-stop/recanalyst
