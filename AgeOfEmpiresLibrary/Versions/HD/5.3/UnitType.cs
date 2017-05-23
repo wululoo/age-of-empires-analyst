@@ -3,6 +3,12 @@ namespace AgeOfEmpiresLibrary
 {
 	public static class UnitType
 	{
+        public static Unit UNIT_ARCHER = new Unit(4, "Archer", 3, new Resources(25, 0, 45, 0), 35000, 2000, 0.35f, 0.96f, 6, 30, new Tuple<int, int>(4, 4), 4, new Tuple<int, int>(0, 0));
+        public static Unit UNIT_HAND_CANNONEER = new Unit(5, "Hand Cannoneer", 5, new Resources(0, 45, 50, 0), 34000, 3450, 0.35f, 0.96f, 9, 35, new Tuple<int, int>(7, 7), 17, new Tuple<int, int>(1, 0));
+        public static Unit UNIT_ELITE_SKIRMISHER = new Unit(6, "Elite Skirmisher", 4, new Resources(35, 25, 0, 0), 22000, 3000, 0.35f, 0.96f, 7, 35, new Tuple<int, int>(1, 5), 4, new Tuple<int, int>(0, 4));
+        public static Unit UNIT_SKIRMISHER = new Unit(7, "Skirmisher", 3, new Resources(35, 25, 50, 0), 22000, 3000, 0.35f, 0.96f, 6, 30, new Tuple<int, int>(1, 4), 2, new Tuple<int, int>(0, 3));
+        public static Unit UNIT_LONGBOWMAN = new Unit(8, "Longbowman", 4, new Resources(35, 0, 40, 0), 18000, 2000, 0.35f, 0.96f, 8, 35, new Tuple<int, int>(6, 6), 6, new Tuple<int, int>(0, 0));
+
 		// Unit IDs that we might draw on maps
 		// GAIA (needed for colours when drawing)
 		public const int GOLDMINE = 66;

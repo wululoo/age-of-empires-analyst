@@ -48,6 +48,7 @@
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Versions\HD\5.3\Research.cs" />
     <Compile Include="Versions\HD\5.3\Resources.cs" />
+    <Compile Include="Versions\HD\5.3\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
