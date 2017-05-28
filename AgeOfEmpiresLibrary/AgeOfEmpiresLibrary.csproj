@@ -49,6 +49,11 @@
     <Compile Include="Versions\HD\5.3\Research.cs" />
     <Compile Include="Versions\HD\5.3\Resources.cs" />
     <Compile Include="Versions\HD\5.3\Unit.cs" />
+    <Compile Include="Versions\HD\5.3\GaiaUnit.cs" />
+    <Compile Include="Versions\HD\5.3\MilitaryUnit.cs" />
+    <Compile Include="Versions\HD\5.3\CivilUnit.cs" />
+    <Compile Include="Versions\HD\5.3\Age.cs" />
+    <Compile Include="Versions\HD\5.3\MonkUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />

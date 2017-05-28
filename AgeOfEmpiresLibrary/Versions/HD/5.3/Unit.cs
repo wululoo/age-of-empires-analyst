@@ -5,9 +5,6 @@ namespace AgeOfEmpiresLibrary
     {
         public int id;
         public string name;
-        public Resources cost;
-        public int age;
-        public int duration;
         public int hp;
         public int reloadTime;
         public float attackDelay;
@@ -17,13 +14,10 @@ namespace AgeOfEmpiresLibrary
         public int category;
         public Tuple<int, int> armor;
 
-        public Unit(int id, string name, int age, Resources cost, int duration, int reloadTime, float attackDelay, float movementRate, int los, int hp, Tuple<int, int> range, int category, Tuple<int, int> armor)
+        public Unit(int id, string name, int reloadTime, float attackDelay, float movementRate, int los, int hp, Tuple<int, int> range, int category, Tuple<int, int> armor)
         {
             this.id = id;
             this.name = name;
-            this.age = age;
-            this.cost = cost;
-            this.duration = duration;
             this.hp = hp;
             this.reloadTime = reloadTime;
             this.attackDelay = attackDelay;
