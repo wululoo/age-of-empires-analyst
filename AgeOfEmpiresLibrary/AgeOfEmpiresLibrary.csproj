@@ -48,18 +48,27 @@
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Versions\HD\5.3\Research.cs" />
     <Compile Include="Versions\HD\5.3\Resources.cs" />
-    <Compile Include="Versions\HD\5.3\Unit.cs" />
-    <Compile Include="Versions\HD\5.3\GaiaUnit.cs" />
-    <Compile Include="Versions\HD\5.3\MilitaryUnit.cs" />
-    <Compile Include="Versions\HD\5.3\CivilUnit.cs" />
     <Compile Include="Versions\HD\5.3\Age.cs" />
-    <Compile Include="Versions\HD\5.3\MonkUnit.cs" />
+    <Compile Include="Versions\HD\5.3\Units\CivilUnit.cs" />
+    <Compile Include="Versions\HD\5.3\Units\GaiaUnit.cs" />
+    <Compile Include="Versions\HD\5.3\Units\MilitaryUnit.cs" />
+    <Compile Include="Versions\HD\5.3\Units\MonkUnit.cs" />
+    <Compile Include="Versions\HD\5.3\Units\Unit.cs" />
+    <Compile Include="Versions\HD\5.3\Structures\Structure.cs" />
+    <Compile Include="Versions\HD\5.3\Structures\ResourceStructure.cs" />
+    <Compile Include="Versions\HD\5.3\Structures\MilitaryStructure.cs" />
+    <Compile Include="Versions\HD\5.3\Structures\DefenseStructure.cs" />
+    <Compile Include="Versions\HD\5.3\Structures\CivilStructure.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\Command.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Versions\" />
     <Folder Include="Versions\HD\" />
     <Folder Include="Versions\HD\5.3\" />
+    <Folder Include="Versions\HD\5.3\Units\" />
+    <Folder Include="Versions\HD\5.3\Structures\" />
+    <Folder Include="Versions\HD\5.3\Commands\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
