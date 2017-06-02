@@ -60,6 +60,12 @@
     <Compile Include="Versions\HD\5.3\Structures\DefenseStructure.cs" />
     <Compile Include="Versions\HD\5.3\Structures\CivilStructure.cs" />
     <Compile Include="Versions\HD\5.3\Commands\Command.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\BuildCommand.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\TrainCommand.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\ResignCommand.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\ResearchCommand.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\SyncCommand.cs" />
+    <Compile Include="Versions\HD\5.3\Commands\ChatCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />

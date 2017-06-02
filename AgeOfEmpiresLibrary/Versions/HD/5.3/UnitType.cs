@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace AgeOfEmpiresLibrary
 {
-	public static class UnitType
-	{
+    public static class UnitType
+    {
         public static MilitaryUnit UNIT_ARCHER = new MilitaryUnit(4, "Archer", Age.FEUDAL_AGE, new Resources(25, 0, 45, 0), 35000, 2000, 0.35f, 0.96f, 6, 30, new Tuple<int, int>(0, 4), 4, new Tuple<int, int>(0, 0));
         public static MilitaryUnit UNIT_HAND_CANNONEER = new MilitaryUnit(5, "Hand Cannoneer", Age.IMPERIAL_AGE, new Resources(0, 45, 50, 0), 34000, 3450, 0.35f, 0.96f, 9, 35, new Tuple<int, int>(0, 7), 17, new Tuple<int, int>(1, 0));
         public static MilitaryUnit UNIT_ELITE_SKIRMISHER = new MilitaryUnit(6, "Elite Skirmisher", Age.CASTLE_AGE, new Resources(35, 25, 0, 0), 22000, 3000, 0.35f, 0.96f, 7, 35, new Tuple<int, int>(1, 5), 4, new Tuple<int, int>(0, 4));
@@ -23,7 +23,7 @@ namespace AgeOfEmpiresLibrary
         public static MilitaryUnit UNIT_KNIGHT = new MilitaryUnit(38, "Knight", Age.CASTLE_AGE, new Resources(0, 60, 75, 0), 30000, 1800, 0, 1.35f, 4, 100, null, 10, new Tuple<int, int>(2, 2));
         public static MilitaryUnit UNIT_CAVALRY_ARCHER = new MilitaryUnit(39, "Cavalry Archer", Age.CASTLE_AGE, new Resources(45, 0, 60, 0), 34000, 2000, 0.7f, 1.4f, 5, 50, new Tuple<int, int>(0, 4), 6, new Tuple<int, int>(0, 0));
         public static MilitaryUnit UNIT_CATAPHRACT = new MilitaryUnit(40, "Cataphract", Age.CASTLE_AGE, new Resources(0, 70, 75, 0), 20000, 1800, 0, 1.35f, 4, 110, null, 9, new Tuple<int, int>(2, 1));
-        public static MilitaryUnit UNIT_HUSKARL = new MilitaryUnit(41, "Huskarl", Age.CASTLE_AGE, new Resources(0, 52, 26, 0), 16000, 2000, 0, 1.05f, 3, 60, null, 10, new Tuple<int, int>(0,6));
+        public static MilitaryUnit UNIT_HUSKARL = new MilitaryUnit(41, "Huskarl", Age.CASTLE_AGE, new Resources(0, 52, 26, 0), 16000, 2000, 0, 1.05f, 3, 60, null, 10, new Tuple<int, int>(0, 6));
         public static MilitaryUnit UNIT_TREBUCHET_UNPACKED = new MilitaryUnit(331, "Trebuchet", Age.IMPERIAL_AGE, new Resources(200, 0, 200, 0), 50000, 10000, 0.42f, 0, 18, 150, new Tuple<int, int>(4, 16), 200, new Tuple<int, int>(1, 150));
         public static MilitaryUnit UNIT_JANISSARY = new MilitaryUnit(46, "Janissary", Age.CASTLE_AGE, new Resources(0, 60, 55, 0), 17000, 3450, 0.28f, 0.96f, 10, 44, new Tuple<int, int>(0, 8), 17, new Tuple<int, int>(1, 0));
         public static GaiaUnit UNIT_WILD_BOAR = new GaiaUnit(48, "Wild Boar", new Resources(0, 340, 0, 0), 0, 2000, 0, 0.96f, 4, 75, null, 7, new Tuple<int, int>(0, 0));
@@ -54,10 +54,11 @@ namespace AgeOfEmpiresLibrary
         public static CivilUnit UNIT_BUILDER_F = new CivilUnit(212, "Builder", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static CivilUnit UNIT_FARMER_F = new CivilUnit(214, "Farmer", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static CivilUnit UNIT_HUNTER_F = new CivilUnit(216, "Hunter", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
-		public static CivilUnit UNIT_LUMBERJACK_F = new CivilUnit(218, "Lumberjack", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
-		public static CivilUnit UNIT_STONE_MINER_F = new CivilUnit(220, "Stone Miner", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
+        public static CivilUnit UNIT_LUMBERJACK_F = new CivilUnit(218, "Lumberjack", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
+        public static CivilUnit UNIT_STONE_MINER_F = new CivilUnit(220, "Stone Miner", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static CivilUnit UNIT_REPAIRER_F = new CivilUnit(222, "Repairer", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
-		public static MilitaryUnit UNIT_LONGBOAT = new MilitaryUnit(533, "Longboat", Age.CASTLE_AGE, new Resources(85, 0, 43, 0), 25000, 3000, 0, 1.54f, 8, 130, new Tuple<int, int>(0, 6), 7, new Tuple<int, int>(0, 6));
+        public static MilitaryUnit UNIT_WOAD_RAIDER = new MilitaryUnit(232, "Woad Raider", Age.CASTLE_AGE, new Resources(0, 65, 25, 0), 10000, 2000, 0, 1.38f, 3, 65, null, 8, new Tuple<int, int>(0, 1));
+        public static MilitaryUnit UNIT_LONGBOAT = new MilitaryUnit(533, "Longboat", Age.CASTLE_AGE, new Resources(85, 0, 43, 0), 25000, 3000, 0, 1.54f, 8, 130, new Tuple<int, int>(0, 6), 7, new Tuple<int, int>(0, 6));
         public static CivilUnit UNIT_FARMER_M = new CivilUnit(259, "Farmer", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static MilitaryUnit UNIT_SCORPION = new MilitaryUnit(279, "Scorpion", Age.CASTLE_AGE, new Resources(75, 0, 75, 0), 30000, 3600, 0.49f, 0.65f, 9, 40, new Tuple<int, int>(2, 7), 12, new Tuple<int, int>(0, 7));
         public static MilitaryUnit UNIT_MANGONEL = new MilitaryUnit(280, "Mangonel", Age.CASTLE_AGE, new Resources(160, 0, 135, 0), 46000, 6000, 0, 0.6f, 9, 50, new Tuple<int, int>(3, 7), 40, new Tuple<int, int>(0, 6));
@@ -92,7 +93,7 @@ namespace AgeOfEmpiresLibrary
         public static MilitaryUnit UNIT_ELITE_THROWING_AXEMAN = new MilitaryUnit(531, "Elite Throwing Axeman", Age.IMPERIAL_AGE, new Resources(0, 55, 25, 0), 17000, 2000, 0.56f, 1, 6, 70, new Tuple<int, int>(0, 4), 8, new Tuple<int, int>(1, 0));
         public static MilitaryUnit UNIT_FAST_FIRE_SHIP = new MilitaryUnit(532, "Fast Fire Ship", Age.IMPERIAL_AGE, new Resources(75, 0, 45, 0), 36000, 250, 0, 1.43f, 6, 140, new Tuple<int, int>(0, 3), 3, new Tuple<int, int>(0, 9));
         public static MilitaryUnit UNIT_ELITE_LONGBOAT = new MilitaryUnit(533, "Elite Longboat", Age.IMPERIAL_AGE, new Resources(80, 0, 40, 0), 25000, 3000, 0, 1.54f, 9, 160, new Tuple<int, int>(0, 7), 8, new Tuple<int, int>(0, 8));
-        public static MilitaryUnit UNIT_ELITE_WARD_RAIDER = new MilitaryUnit(534, "Elite Ward Raider", Age.IMPERIAL_AGE, new Resources(0, 65, 25, 0), 10000, 2000, 0, 1.38f, 3, 80, null, 13, new Tuple<int, int>(0, 1));
+        public static MilitaryUnit UNIT_ELITE_WOAD_RAIDER = new MilitaryUnit(534, "Elite Woad Raider", Age.IMPERIAL_AGE, new Resources(0, 65, 25, 0), 10000, 2000, 0, 1.38f, 3, 80, null, 13, new Tuple<int, int>(0, 1));
         public static MilitaryUnit UNIT_GALLEY = new MilitaryUnit(539, "Galley", Age.FEUDAL_AGE, new Resources(90, 0, 30, 0), 60000, 3000, 0, 1.43f, 7, 120, new Tuple<int, int>(0, 5), 6, new Tuple<int, int>(0, 6));
         public static MilitaryUnit UNIT_HEAVY_SCORPION = new MilitaryUnit(542, "Heavy Scorpion", Age.IMPERIAL_AGE, new Resources(75, 0, 75, 0), 30000, 3600, 0.49f, 0.65f, 9, 50, new Tuple<int, int>(2, 7), 16, new Tuple<int, int>(0, 7));
         public static CivilUnit UNIT_TRANSPORT_SHIP = new CivilUnit(545, "Transport Ship", Age.DARK_AGE, new Resources(125, 0, 0, 0), 45000, 5, 0, 0, 1.45f, 5, 100, null, 0, new Tuple<int, int>(4, 8));
@@ -201,133 +202,133 @@ namespace AgeOfEmpiresLibrary
         public static MilitaryStructure STRUCTURE_BARRACK_1 = new MilitaryStructure(12, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
         public static MilitaryStructure STRUCTURE_ARCHERY_RANGE_2 = new MilitaryStructure(14, "Archery Range", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
         public static MilitaryStructure STRUCTURE_BLACKSMITH_1 = new MilitaryStructure(18, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_BLACKSMITH_2 = new MilitaryStructure(19, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_BARRACK_2 = new MilitaryStructure(20, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
+        public static MilitaryStructure STRUCTURE_BLACKSMITH_2 = new MilitaryStructure(19, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_BARRACK_2 = new MilitaryStructure(20, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
         public static MilitaryStructure STRUCTURE_MONASTERY_1 = new MilitaryStructure(30, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
         public static MilitaryStructure STRUCTURE_MONASTERY_2 = new MilitaryStructure(31, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_MONASTERY_3 = new MilitaryStructure(32, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_DOCK_1 = new MilitaryStructure(45, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_DOCK_2 = new MilitaryStructure(47, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_MONASTERY_3 = new MilitaryStructure(32, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_DOCK_1 = new MilitaryStructure(45, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_DOCK_2 = new MilitaryStructure(47, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
         public static MilitaryStructure STRUCTURE_SIEGE_WORKSHOP_1 = new MilitaryStructure(49, "Siege Workshop", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 4, 2100, new Tuple<int, int>(2, 9));
-		public static ResourceStructure STRUCTURE_FARM = new ResourceStructure(50, "Farm", Age.DARK_AGE, new Resources(60, 0, 0, 0), 15000, 0, 480, new Tuple<int, int>(0, 0));
-		public static MilitaryStructure STRUCTURE_DOCK_3 = new MilitaryStructure(51, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
-		public static DefenseStructure STRUCTURE_GATE_1 = new DefenseStructure(63, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_2 = new DefenseStructure(64, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_3 = new DefenseStructure(67, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static ResourceStructure STRUCTURE_FARM = new ResourceStructure(50, "Farm", Age.DARK_AGE, new Resources(60, 0, 0, 0), 15000, 0, 480, new Tuple<int, int>(0, 0));
+        public static MilitaryStructure STRUCTURE_DOCK_3 = new MilitaryStructure(51, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static DefenseStructure STRUCTURE_GATE_1 = new DefenseStructure(63, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_2 = new DefenseStructure(64, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_3 = new DefenseStructure(67, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
         public static CivilStructure STRUCTURE_MILL_1 = new CivilStructure(68, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
         public static CivilStructure STRUCTURE_HOUSE_1 = new CivilStructure(70, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
         public static CivilStructure STRUCTURE_TOWN_CENTER_1 = new CivilStructure(71, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static DefenseStructure STRUCTURE_PALISADE_WALL = new DefenseStructure(72, "Palisade Wall", Age.DARK_AGE, new Resources(2, 0, 0, 0), 6000, 2, 250, new Tuple<int, int>(2, 5));
-		public static DefenseStructure STRUCTURE_GATE_4 = new DefenseStructure(78, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_WATCH_TOWER_1 = new DefenseStructure(79, "Watch Tower", Age.FEUDAL_AGE, new Resources(25, 0, 0, 125), 140000, 10, 1020, new Tuple<int, int>(1, 7));
-		public static DefenseStructure STRUCTURE_GATE_5 = new DefenseStructure(80, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_6 = new DefenseStructure(81, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_PALISADE_WALL = new DefenseStructure(72, "Palisade Wall", Age.DARK_AGE, new Resources(2, 0, 0, 0), 6000, 2, 250, new Tuple<int, int>(2, 5));
+        public static DefenseStructure STRUCTURE_GATE_4 = new DefenseStructure(78, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_WATCH_TOWER_1 = new DefenseStructure(79, "Watch Tower", Age.FEUDAL_AGE, new Resources(25, 0, 0, 125), 140000, 10, 1020, new Tuple<int, int>(1, 7));
+        public static DefenseStructure STRUCTURE_GATE_5 = new DefenseStructure(80, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_6 = new DefenseStructure(81, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
         public static MilitaryStructure STRUCTURE_CASTLE = new MilitaryStructure(82, "Castle", Age.CASTLE_AGE, new Resources(0, 0, 0, 650), 260000, 11, 4800, new Tuple<int, int>(8, 11));
-		public static CivilStructure STRUCTURE_MARKET_1 = new CivilStructure(84, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
-		public static DefenseStructure STRUCTURE_GATE_7 = new DefenseStructure(85, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static CivilStructure STRUCTURE_MARKET_1 = new CivilStructure(84, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
+        public static DefenseStructure STRUCTURE_GATE_7 = new DefenseStructure(85, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
         public static MilitaryStructure STRUCTURE_STABLE_1 = new MilitaryStructure(86, "Stable", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
-		public static MilitaryStructure STRUCTURE_ARCHERY_RANGE_3 = new MilitaryStructure(87, "Archery Range", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
-		public static DefenseStructure STRUCTURE_GATE_8 = new DefenseStructure(88, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_9 = new DefenseStructure(90, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static MilitaryStructure STRUCTURE_ARCHERY_RANGE_3 = new MilitaryStructure(87, "Archery Range", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
+        public static DefenseStructure STRUCTURE_GATE_8 = new DefenseStructure(88, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_9 = new DefenseStructure(90, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
         public static DefenseStructure STRUCTURE_GATE_10 = new DefenseStructure(91, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_11 = new DefenseStructure(92, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_12 = new DefenseStructure(95, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static MilitaryStructure STRUCTURE_BLACKSMITH_3 = new MilitaryStructure(103, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_MONASTERY_4 = new MilitaryStructure(104, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_BLACKSMITH_4 = new MilitaryStructure(105, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_2 = new DefenseStructure(109, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_MARKET_2 = new CivilStructure(116, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
-		public static DefenseStructure STRUCTURE_STONE_WALL = new DefenseStructure(117, "Stone Wall", Age.FEUDAL_AGE, new Resources(0, 0, 0, 5), 10000, 2, 900, new Tuple<int, int>(8, 10));
-		public static CivilStructure STRUCTURE_MILL_2 = new CivilStructure(129, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_MILL_3 = new CivilStructure(130, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_MILL_4 = new CivilStructure(131, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_BARRACK_3 = new MilitaryStructure(132, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
-		public static MilitaryStructure STRUCTURE_DOCK_4 = new MilitaryStructure(133, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_MARKET_3 = new CivilStructure(137, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_3 = new CivilStructure(141, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_4 = new CivilStructure(142, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static MilitaryStructure STRUCTURE_SIEGE_WORKSHOP_2 = new MilitaryStructure(150, "Siege Workshop", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 4, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_STABLE_2 = new MilitaryStructure(153, "Stable", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
+        public static DefenseStructure STRUCTURE_GATE_11 = new DefenseStructure(92, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_12 = new DefenseStructure(95, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static MilitaryStructure STRUCTURE_BLACKSMITH_3 = new MilitaryStructure(103, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_MONASTERY_4 = new MilitaryStructure(104, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_BLACKSMITH_4 = new MilitaryStructure(105, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_2 = new DefenseStructure(109, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_MARKET_2 = new CivilStructure(116, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
+        public static DefenseStructure STRUCTURE_STONE_WALL = new DefenseStructure(117, "Stone Wall", Age.FEUDAL_AGE, new Resources(0, 0, 0, 5), 10000, 2, 900, new Tuple<int, int>(8, 10));
+        public static CivilStructure STRUCTURE_MILL_2 = new CivilStructure(129, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_MILL_3 = new CivilStructure(130, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_MILL_4 = new CivilStructure(131, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_BARRACK_3 = new MilitaryStructure(132, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
+        public static MilitaryStructure STRUCTURE_DOCK_4 = new MilitaryStructure(133, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_MARKET_3 = new CivilStructure(137, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_3 = new CivilStructure(141, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_4 = new CivilStructure(142, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static MilitaryStructure STRUCTURE_SIEGE_WORKSHOP_2 = new MilitaryStructure(150, "Siege Workshop", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 4, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_STABLE_2 = new MilitaryStructure(153, "Stable", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
         public static DefenseStructure STRUCTURE_FORTIFIED_WALL = new DefenseStructure(155, "Fortified Wall", Age.CASTLE_AGE, new Resources(0, 0, 0, 5), 10000, 2, 3000, new Tuple<int, int>(12, 12));
         public static ResourceStructure STRUCTURE_FISH_TRAP = new ResourceStructure(199, "Fish Trap", Age.DARK_AGE, new Resources(100, 0, 0, 0), 40000, 1, 50, new Tuple<int, int>(0, 0));
-		public static MilitaryStructure STRUCTURE_UNIVERSITY_1 = new MilitaryStructure(209, "University", Age.CASTLE_AGE, new Resources(200, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_UNIVERSITY_2 = new MilitaryStructure(210, "University", Age.CASTLE_AGE, new Resources(200, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_UNIVERSITY_1 = new MilitaryStructure(209, "University", Age.CASTLE_AGE, new Resources(200, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_UNIVERSITY_2 = new MilitaryStructure(210, "University", Age.CASTLE_AGE, new Resources(200, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
         public static DefenseStructure STRUCTURE_GUARD_TOWER = new DefenseStructure(234, "Guard Tower", Age.CASTLE_AGE, new Resources(25, 0, 0, 125), 140000, 10, 1500, new Tuple<int, int>(2, 8));
         public static DefenseStructure STRUCTURE_KEEP = new DefenseStructure(235, "Keep", Age.IMPERIAL_AGE, new Resources(25, 0, 0, 125), 140000, 10, 2250, new Tuple<int, int>(3, 9));
-		public static CivilStructure STRUCTURE_HOUSE_2 = new CivilStructure(463, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_HOUSE_3 = new CivilStructure(464, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_HOUSE_4 = new CivilStructure(465, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_5 = new CivilStructure(481, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_6 = new CivilStructure(482, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_7 = new CivilStructure(483, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_8 = new CivilStructure(484, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static DefenseStructure STRUCTURE_GATE_13 = new DefenseStructure(487, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_14 = new DefenseStructure(488, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_15 = new DefenseStructure(490, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_16 = new DefenseStructure(491, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static MilitaryStructure STRUCTURE_BARRACK_4 = new MilitaryStructure(498, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
-		public static CivilStructure STRUCTURE_LUMBER_CAMP_1 = new CivilStructure(562, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_LUMBER_CAMP_2 = new CivilStructure(563, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_LUMBER_CAMP_3 = new CivilStructure(564, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_LUMBER_CAMP_4 = new CivilStructure(565, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static DefenseStructure STRUCTURE_WATCH_TOWER_2 = new DefenseStructure(566, "Watch Tower", Age.FEUDAL_AGE, new Resources(25, 0, 0, 125), 140000, 10, 1020, new Tuple<int, int>(1, 7));
-		public static CivilStructure STRUCTURE_MINING_CAMP_1 = new CivilStructure(584, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_MINING_CAMP_2 = new CivilStructure(585, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_MINING_CAMP_3 = new CivilStructure(586, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_MINING_CAMP_4 = new CivilStructure(587, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_9 = new CivilStructure(597, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static DefenseStructure STRUCTURE_OUTPOST = new DefenseStructure(598, "Outpost", Age.DARK_AGE, new Resources(25, 0, 0, 5), 15000, 6, 500, new Tuple<int, int>(0, 0));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_10 = new CivilStructure(611, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_11 = new CivilStructure(612, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_12 = new CivilStructure(613, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_13 = new CivilStructure(614, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_14 = new CivilStructure(615, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_15 = new CivilStructure(616, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_16 = new CivilStructure(617, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_17 = new CivilStructure(618, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_18 = new CivilStructure(619, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_19 = new CivilStructure(620, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static CivilStructure STRUCTURE_TOWN_CENTER_20 = new CivilStructure(621, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
-		public static DefenseStructure STRUCTURE_GATE_17 = new DefenseStructure(659, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_18 = new DefenseStructure(660, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_19 = new DefenseStructure(661, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_20 = new DefenseStructure(662, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_21 = new DefenseStructure(663, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_22 = new DefenseStructure(664, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_23 = new DefenseStructure(665, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_24 = new DefenseStructure(666, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_25 = new DefenseStructure(667, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_26 = new DefenseStructure(668, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_27 = new DefenseStructure(669, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_28 = new DefenseStructure(670, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_29 = new DefenseStructure(671, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_30 = new DefenseStructure(672, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_31 = new DefenseStructure(673, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_GATE_32 = new DefenseStructure(674, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_1 = new DefenseStructure(789, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_2 = new DefenseStructure(790, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_3 = new DefenseStructure(791, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_4 = new DefenseStructure(792, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_5 = new DefenseStructure(793, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_6 = new DefenseStructure(794, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_7 = new DefenseStructure(795, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_8 = new DefenseStructure(796, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_9 = new DefenseStructure(797, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_10 = new DefenseStructure(798, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_11 = new DefenseStructure(799, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_12 = new DefenseStructure(800, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_13 = new DefenseStructure(801, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_14 = new DefenseStructure(802, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_15 = new DefenseStructure(803, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static DefenseStructure STRUCTURE_PALISADE_GATE_16 = new DefenseStructure(804, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
-		public static MilitaryStructure STRUCTURE_DOCK_5 = new MilitaryStructure(805, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_DOCK_6 = new MilitaryStructure(806, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_DOCK_7 = new MilitaryStructure(807, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
-		public static MilitaryStructure STRUCTURE_DOCK_8 = new MilitaryStructure(808, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_HOUSE_2 = new CivilStructure(463, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_HOUSE_3 = new CivilStructure(464, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_HOUSE_4 = new CivilStructure(465, "House", Age.DARK_AGE, new Resources(30, 0, 0, 0), 25000, 1, 900, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_5 = new CivilStructure(481, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_6 = new CivilStructure(482, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_7 = new CivilStructure(483, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_8 = new CivilStructure(484, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static DefenseStructure STRUCTURE_GATE_13 = new DefenseStructure(487, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_14 = new DefenseStructure(488, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_15 = new DefenseStructure(490, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_16 = new DefenseStructure(491, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static MilitaryStructure STRUCTURE_BARRACK_4 = new MilitaryStructure(498, "Barracks", Age.DARK_AGE, new Resources(175, 0, 0, 0), 50000, 5, 2100, new Tuple<int, int>(3, 10));
+        public static CivilStructure STRUCTURE_LUMBER_CAMP_1 = new CivilStructure(562, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_LUMBER_CAMP_2 = new CivilStructure(563, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_LUMBER_CAMP_3 = new CivilStructure(564, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_LUMBER_CAMP_4 = new CivilStructure(565, "Lumber Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static DefenseStructure STRUCTURE_WATCH_TOWER_2 = new DefenseStructure(566, "Watch Tower", Age.FEUDAL_AGE, new Resources(25, 0, 0, 125), 140000, 10, 1020, new Tuple<int, int>(1, 7));
+        public static CivilStructure STRUCTURE_MINING_CAMP_1 = new CivilStructure(584, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_MINING_CAMP_2 = new CivilStructure(585, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_MINING_CAMP_3 = new CivilStructure(586, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_MINING_CAMP_4 = new CivilStructure(587, "Mining Camp", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_9 = new CivilStructure(597, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static DefenseStructure STRUCTURE_OUTPOST = new DefenseStructure(598, "Outpost", Age.DARK_AGE, new Resources(25, 0, 0, 5), 15000, 6, 500, new Tuple<int, int>(0, 0));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_10 = new CivilStructure(611, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_11 = new CivilStructure(612, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_12 = new CivilStructure(613, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_13 = new CivilStructure(614, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_14 = new CivilStructure(615, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_15 = new CivilStructure(616, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_16 = new CivilStructure(617, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_17 = new CivilStructure(618, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_18 = new CivilStructure(619, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_19 = new CivilStructure(620, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_20 = new CivilStructure(621, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static DefenseStructure STRUCTURE_GATE_17 = new DefenseStructure(659, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_18 = new DefenseStructure(660, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_19 = new DefenseStructure(661, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_20 = new DefenseStructure(662, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_21 = new DefenseStructure(663, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_22 = new DefenseStructure(664, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_23 = new DefenseStructure(665, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_24 = new DefenseStructure(666, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_25 = new DefenseStructure(667, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_26 = new DefenseStructure(668, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_27 = new DefenseStructure(669, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_28 = new DefenseStructure(670, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_29 = new DefenseStructure(671, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_30 = new DefenseStructure(672, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_31 = new DefenseStructure(673, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_GATE_32 = new DefenseStructure(674, "Gate", Age.FEUDAL_AGE, new Resources(0, 0, 0, 30), 70000, 6, 1375, new Tuple<int, int>(6, 6));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_1 = new DefenseStructure(789, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_2 = new DefenseStructure(790, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_3 = new DefenseStructure(791, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_4 = new DefenseStructure(792, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_5 = new DefenseStructure(793, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_6 = new DefenseStructure(794, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_7 = new DefenseStructure(795, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_8 = new DefenseStructure(796, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_9 = new DefenseStructure(797, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_10 = new DefenseStructure(798, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_11 = new DefenseStructure(799, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_12 = new DefenseStructure(800, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_13 = new DefenseStructure(801, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_14 = new DefenseStructure(802, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_15 = new DefenseStructure(803, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static DefenseStructure STRUCTURE_PALISADE_GATE_16 = new DefenseStructure(804, "Palisade Gate", Age.DARK_AGE, new Resources(20, 0, 0, 0), 30000, 6, 400, new Tuple<int, int>(2, 2));
+        public static MilitaryStructure STRUCTURE_DOCK_5 = new MilitaryStructure(805, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_DOCK_6 = new MilitaryStructure(806, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_DOCK_7 = new MilitaryStructure(807, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
+        public static MilitaryStructure STRUCTURE_DOCK_8 = new MilitaryStructure(808, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
         public static MilitaryStructure STRUCTURE_HARBOR = new MilitaryStructure(1189, "Harbor", Age.IMPERIAL_AGE, new Resources(150, 0, 0, 0), 35000, 20, 2000, new Tuple<int, int>(3, 10));
 
-        public static readonly List<CivilUnit> VILLAGERS = new List<CivilUnit>(){
-            
+        public static readonly List<CivilUnit> VILLAGER = new List<CivilUnit>(){
+
             UNIT_VILLAGER_M, UNIT_VILLAGER_F, UNIT_FARMER_M, UNIT_FARMER_M_2, UNIT_FARMER_F,
             UNIT_HUNTER_M, UNIT_HUNTER_F, UNIT_FORAGER_M, UNIT_FORAGER_F, UNIT_LUMBERJACK_M,
             UNIT_LUMBERJACK_F, UNIT_GOLD_MINER_M, UNIT_GOLD_MINER_F, UNIT_STONE_MINER_M, UNIT_STONE_MINER_F,
@@ -335,15 +336,21 @@ namespace AgeOfEmpiresLibrary
 
         };
 
-        public static readonly List<MilitaryUnit> SWORDSMANS = new List<MilitaryUnit>(){
-            
+        public static readonly List<MilitaryUnit> SWORDSMAN = new List<MilitaryUnit>(){
+
             UNIT_MILITIA, UNIT_MAN_AT_ARMS, UNIT_LONG_SWORDSMAN, UNIT_TWO_HANDED_SWORDSMAN, UNIT_CHAMPION
 
         };
 
-        public static readonly List<MilitaryUnit> SPEARMANS = new List<MilitaryUnit>(){
+        public static readonly List<MilitaryUnit> SPEARMAN = new List<MilitaryUnit>(){
 
             UNIT_SPEARMAN, UNIT_PIKEMAN, UNIt_HALBERDIER
+
+        };
+
+        public static readonly List<MilitaryUnit> EAGLE = new List<MilitaryUnit>(){
+
+            UNIT_EAGLE_SCOUT, UNIT_EAGLE_WARRIOR, UNIT_ELITE_EAGLE_WARRIOR
 
         };
 
@@ -353,9 +360,21 @@ namespace AgeOfEmpiresLibrary
 
         };
 
-        public static readonly List<MilitaryUnit> SKIRMISHERS = new List<MilitaryUnit>(){
+        public static readonly List<MilitaryUnit> SKIRMISHER = new List<MilitaryUnit>(){
 
             UNIT_SKIRMISHER, UNIT_ELITE_SKIRMISHER, UNIT_IMPERIAL_SKIRMISHER
+
+        };
+
+        public static readonly List<MilitaryUnit> CAVALRY_ARCHER = new List<MilitaryUnit>(){
+
+            UNIT_CAVALRY_ARCHER, UNIT_HEAVY_CAVALRY_ARCHER
+
+        };
+
+        public static readonly List<MilitaryUnit> GENITOUR = new List<MilitaryUnit>(){
+
+            UNIT_GENITOUR, UNIT_GENITOUR, UNIT_ELITE_GENITOUR, UNIT_ELITE_GENITOUR_2
 
         };
 
@@ -368,6 +387,90 @@ namespace AgeOfEmpiresLibrary
         public static readonly List<MilitaryUnit> HEAVY_CAVALRY = new List<MilitaryUnit>(){
 
             UNIT_KNIGHT, UNIT_CAVALIER, UNIT_PALADIN
+
+        };
+
+        public static readonly List<MilitaryUnit> CAMEL = new List<MilitaryUnit>(){
+
+            UNIT_CAMEL, UNIT_HEAVY_CAMEL, UNIT_IMPERIAL_CAMEL
+
+        };
+
+        public static readonly List<MilitaryUnit> BATTLE_ELEPHANT = new List<MilitaryUnit>(){
+
+            UNIT_BATTLE_ELEPHANT, UNIT_ELITE_BATTLE_ELEPHANT
+
+        };
+
+        public static readonly List<MilitaryUnit> RAM = new List<MilitaryUnit>(){
+
+            UNIT_BATTERING_RAM, UNIT_CAPPED_RAM, UNIT_SIEGE_RAM
+
+        };
+
+        public static readonly List<MilitaryUnit> MANGONEL = new List<MilitaryUnit>(){
+
+            UNIT_MANGONEL, UNIT_ONAGER, UNIT_SIEGE_ONAGER
+
+        };
+
+        public static readonly List<MilitaryUnit> SCORPION = new List<MilitaryUnit>(){
+
+            UNIT_SCORPION, UNIT_HEAVY_SCORPION
+
+        };
+
+        public static readonly List<MilitaryUnit> GALLEY = new List<MilitaryUnit>(){
+
+            UNIT_GALLEY, UNIT_WAR_GALLEY, UNIT_GALLEON
+
+        };
+
+        public static readonly List<MilitaryUnit> FIRE_GALLEY = new List<MilitaryUnit>(){
+
+            UNIT_FIRE_GALLEY, UNIT_FIRE_SHIP, UNIT_FAST_FIRE_SHIP
+
+        };
+
+        public static readonly List<MilitaryUnit> DEMOLITION_SHIP = new List<MilitaryUnit>(){
+
+            UNIT_DEMOLITION_RAFT, UNIT_DEMOLITION_SHIP, UNIT_HEAVY_DEMOLITION_SHIP
+
+        };
+
+        public static readonly List<MilitaryUnit> CANNON_GALLEON = new List<MilitaryUnit>(){
+
+            UNIT_CANNON_GALLEON, UNIT_ELITE_CANNON_GALLEON
+
+        };
+
+        public static readonly List<MilitaryUnit> UNIQUE_UNIT = new List<MilitaryUnit>(){
+
+            UNIT_JAGUAR_WARRIOR, UNIT_CAMEL_ARCHER, UNIT_LONGBOWMAN, UNIT_ARAMBAI, UNIT_CATAPHRACT,
+            UNIT_WOAD_RAIDER, UNIT_ELITE_CHU_KO_NU, UNIT_SHOTEL_WARRIOR, UNIT_THROWING_AXEMAN, UNIT_HUSKARL,
+            UNIT_HUSKARL_2, UNIT_TARKAN, UNIT_TARKAN_2, UNIT_KAMAYUK, UNIT_ELEPHANT_ARCHER,
+            UNIT_GENOESE_CROSSBOWMAN, UNIT_SAMURAI, UNIT_BALLISTA_ELEPHANT, UNIT_WAR_WAGON, UNIT_MAGYAR_HUSZAR,
+            UNIT_KARAMBIT_WARRIOR, UNIT_GBETO, UNIT_PLUMED_ARCHER, UNIT_MANGUDAI, UNIT_WAR_ELEPHANT,
+            UNIT_ORGAN_GUN, UNIT_MAMELUKE, UNIT_BOYAR, UNIT_CONQUISTADOR, UNIT_TEUTONIC_KNIGHT,
+            UNIT_JANISSARY, UNIT_RATTAN_ARCHER, UNIT_BERSERK
+
+        };
+
+		public static readonly List<MilitaryUnit> ELITE_UNIQUE_UNIT = new List<MilitaryUnit>(){
+
+			UNIT_ELITE_JAGUAR_WARRIOR, UNIT_ELITE_CAMEL_ARCHER, UNIT_ELITE_LONGBOWMAN, UNIT_ELITE_ARAMBAI, UNIT_ELITE_CATAPHRACT,
+			UNIT_ELITE_WOAD_RAIDER, UNIT_ELITE_CHU_KO_NU, UNIT_ELITE_SHOTEL_WARRIOR, UNIT_ELITE_THROWING_AXEMAN, UNIT_ELITE_HUSKARL,
+			UNIT_ELITE_HUSKARL_2, UNIT_ELITE_TARKAN, UNIT_ELITE_TARKAN_2, UNIT_ELITE_KAMAYUK, UNIT_ELITE_ELEPHANT_ARCHER,
+			UNIT_ELITE_GENOESE_CROSSBOWMAN, UNIT_ELITE_SAMURAI, UNIT_ELITE_BALLISTA_ELEPHANT, UNIT_ELITE_WAR_WAGON, UNIT_ELITE_MAGYAR_HUSZAR,
+			UNIT_ELITE_KARAMBIT_WARRIOR, UNIT_ELITE_GBETO, UNIT_ELITE_PLUMED_ARCHER, UNIT_ELITE_MANGUDAI, UNIT_ELITE_WAR_ELEPHANT,
+			UNIT_ELITE_ORGAN_GUN, UNIT_ELITE_MAMELUKE, UNIT_ELITE_BOYAR, UNIT_ELITE_CONQUISTADOR, UNIT_ELITE_TEUTONIC_KNIGHT,
+			UNIT_ELITE_JANISSARY, UNIT_ELITE_RATTAN_ARCHER, UNIT_ELITE_BERSERK
+
+		};
+
+        public static readonly List<MilitaryUnit> TREBUCHET = new List<MilitaryUnit>(){
+
+            UNIT_TREBUCHET_PACKED, UNIT_TREBUCHET_UNPACKED
 
         };
 
@@ -707,7 +810,166 @@ namespace AgeOfEmpiresLibrary
         }
 
         // ----------
-        // SPECIAL BOOL FUNCTION
+        // UNIT BOOLEAN FUNCTION
+        // ----------
+
+        public static bool isVillager(int id)
+        {
+            return VILLAGER.Any(c => c.id == id);
+        }
+
+        public static bool isSwordsman(int id)
+        {
+            return SWORDSMAN.Any(c => c.id == id);
+        }
+
+        public static bool isSpearman(int id)
+        {
+            return SPEARMAN.Any(c => c.id == id);
+        }
+
+        public static bool isEagle(int id)
+        {
+            return EAGLE.Any(c => c.id == id);
+        }
+
+        public static bool isCondottiero(int id)
+        {
+            return id == UNIT_CONDOTTIERO.id || id == UNIT_CONDOTTIERO_2.id;
+        }
+
+        public static bool isBarrackUnit(int id)
+        {
+            return isSwordsman(id) || isSpearman(id) || isEagle(id) || isCondottiero(id);
+        }
+
+        public static bool isArcher(int id)
+        {
+            return ARCHERS.Any(c => c.id == id);
+        }
+
+        public static bool isSkirmisher(int id)
+        {
+            return SKIRMISHER.Any(c => c.id == id);
+        }
+
+        public static bool isCavalryArcher(int id)
+        {
+            return CAVALRY_ARCHER.Any(c => c.id == id);
+        }
+
+        public static bool isGenitour(int id)
+        {
+            return GENITOUR.Any(c => c.id == id);
+        }
+
+        public static bool isArcheryRangeUnit(int id)
+        {
+            return isArcher(id) || isSkirmisher(id) || isCavalryArcher(id) || isGenitour(id) || id == UNIT_SLINGER.id || id == UNIT_HAND_CANNONEER.id;
+        }
+
+        public static bool isLightCavalry(int id)
+        {
+            return LIGHT_CAVALRY.Any(c => c.id == id);
+        }
+
+        public static bool isHeavyCavalry(int id)
+        {
+            return HEAVY_CAVALRY.Any(c => c.id == id);
+        }
+
+        public static bool isCamel(int id)
+        {
+            return CAMEL.Any(c => c.id == id);
+        }
+
+        public static bool isBattleElephant(int id)
+        {
+            return BATTLE_ELEPHANT.Any(c => c.id == id);
+        }
+
+        public static bool isStableUnit(int id)
+        {
+            return isLightCavalry(id) || isHeavyCavalry(id) || isCamel(id) || isBattleElephant(id);
+        }
+
+        public static bool isRam(int id)
+        {
+            return RAM.Any(c => c.id == id);
+        }
+
+        public static bool isMangonel(int id)
+        {
+            return MANGONEL.Any(c => c.id == id);
+        }
+
+        public static bool isScorpion(int id)
+        {
+            return SCORPION.Any(c => c.id == id);
+        }
+
+        public static bool isSiegeTower(int id)
+        {
+            return id == UNIT_SIEGE_TOWER.id || id == UNIT_SIEGE_TOWER_2.id;
+        }
+
+        public static bool isBombardCannon(int id)
+        {
+            return id == UNIT_BOMBARD_CANNON.id;
+        }
+
+        public static bool isSiegeWorkshopUnit(int id)
+        {
+            return isRam(id) || isMangonel(id) || isScorpion(id) || isSiegeTower(id) || isBombardCannon(id);
+        }
+
+        public static bool isGalley(int id)
+        {
+            return GALLEY.Any(c => c.id == id);
+        }
+
+        public static bool isFireGalley(int id)
+        {
+            return FIRE_GALLEY.Any(c => c.id == id);
+        }
+
+        public static bool isDemolitionShip(int id)
+        {
+            return DEMOLITION_SHIP.Any(c => c.id == id);
+        }
+
+        public static bool isCannonGalleon(int id)
+        {
+            return CANNON_GALLEON.Any(c => c.id == id);
+        }
+
+        public static bool isDockUnit(int id)
+        {
+            return isGalley(id) || isFireGalley(id) || isDemolitionShip(id) || isCannonGalleon(id) || id == UNIT_LONGBOAT.id || id == UNIT_ELITE_LONGBOAT.id || id == UNIT_TURTLE_SHIP.id || id == UNIT_ELITE_TURTLE_SHIP.id || id == UNIT_CARAVEL.id || id == UNIT_ELITE_CARAVEL.id || id == UNIT_FISHING_SHIP.id || id == UNIT_TRANSPORT_SHIP.id; 
+        }
+
+        public static bool isTrebuchet(int id)
+        {
+            return TREBUCHET.Any(c => c.id == id);
+        }
+
+        public static bool isUniqueUnit(int id)
+        {
+            return UNIQUE_UNIT.Any(c => c.id == id);
+        }
+
+        public static bool isEliteUniqueUnit(int id)
+        {
+            return ELITE_UNIQUE_UNIT.Any(c => c.id == id);
+        }
+
+        public static bool isCastleUnit(int id)
+        {
+            return isUniqueUnit(id) || isEliteUniqueUnit(id) || isTrebuchet(id) || id == UNIT_PETARD.id;
+        }
+
+        // ----------
+        // SPECIAL BOOLEAN FUNCTION
         // ----------
 
         public static bool isGatheringPoint(int id)
@@ -718,6 +980,11 @@ namespace AgeOfEmpiresLibrary
         public static bool isProductionStructure(int id)
         {
             return isTownCenter(id) || isMarket(id) || isCastle(id) || isBarrack(id) || isArcheryRange(id) || isStable(id) || isSiegeWorkshop(id) || isDock(id) || isMonastery(id);
+        }
+
+        public static bool isSiegeUnit(int id)
+        {
+            return isSiegeWorkshopUnit(id) || isTrebuchet(id);
         }
 	}
 }
