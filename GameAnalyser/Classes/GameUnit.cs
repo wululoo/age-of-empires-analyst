@@ -8,6 +8,10 @@
 
 		public int id = 0;
 
+        public string name = "";
+
+        public int gameObjectId = 0;
+
 		public double positionX;
 
 		public double positionY;

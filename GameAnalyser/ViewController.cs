@@ -6,23 +6,50 @@ using AppKit;
 using Foundation;
 using Newtonsoft.Json;
 using Rest.Net;
+using AgeOfEmpiresLibrary;
+using Firebase.Database;
+using Firebase.Database.Query;
 
 namespace GameAnalyser
 {
 	public partial class ViewController : NSViewController
 	{
+        public FirebaseClient firebaseClient;
+
 		public ViewController(IntPtr handle) : base(handle)
 		{
 		}
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
+        public class Test 
+        {
+            public int Duration;
+            public string Name;
+        }
 
-			// Do any additional setup after loading the view.
-		}
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-		public override NSObject RepresentedObject
+            // Do any additional setup after loading the view.
+
+            //Testing();
+
+        }
+
+   //     public async void Testing()
+   //     {
+			//var auth = "GrXh9SxG47RXNrUBuZecm1hpf6dc2kWbWfql7UJF";
+			//firebaseClient = new FirebaseClient(
+			//	"https://aoe-analyst.firebaseio.com/",
+			//	new FirebaseOptions
+			//	{
+			//		AuthTokenAsyncFactory = () => Task.FromResult(auth)
+			//	}
+			//);
+
+        //}
+
+        public override NSObject RepresentedObject
 		{
 			get
 			{
@@ -64,10 +91,12 @@ namespace GameAnalyser
 
 					try
 					{
-						recordedGame = Analyser.analyseGameROR(stream.getHeaderByteList(), stream.getBodyByteList(), stream.getFileName(), stream.getFileFormat());
-						BodyLabel.Value = recordedGame.exportMainJSON();
+                        recordedGame = Analyser.analyseGameROR(stream.getHeaderByteList(), stream.getBodyByteList(), stream.getFileName(), stream.getFileFormat());
+                        //GameRoom gr = AgeOfEmpiresLibrary.Classes.Parser.getGameRoomWK(stream.getHeaderByteArray());
+                        BodyLabel.Value = recordedGame.exportMainJSON();
 						Version.StringValue = recordedGame.getVersion().ToString();
-						SubVersion.StringValue = recordedGame.getSubVersion().ToString();
+                        HeaderLabel2.Value = AgeOfEmpiresLibrary.Classes.Parser.getGameRoom(stream.getHeaderByteArray()).exportJSON();
+						//SubVersion.StringValue = recordedGame.getSubVersion().ToString();
 					}
 					catch (Exception e)
 					{

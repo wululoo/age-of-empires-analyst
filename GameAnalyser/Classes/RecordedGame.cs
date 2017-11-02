@@ -21,6 +21,8 @@ namespace GameAnalyser
 
 		public string lobbyName;
 
+        public bool isRanked;
+
 		public Map map;
 
 		public Dictionary<int, Player> players;
@@ -28,6 +30,8 @@ namespace GameAnalyser
 		public List<Player> spectators;
 
 		public List<Team> teams;
+
+        public List<GameUnit> units;
 
 		public GameSetting gameSetting;
 
@@ -50,6 +54,7 @@ namespace GameAnalyser
 			chatMessages = new List<ChatMessage>();
 			winners = new List<int>();
 			spectators = new List<Player>();
+            units = new List<GameUnit>();
 
 			id = Guid.NewGuid().ToString();
 		}
@@ -73,6 +78,7 @@ namespace GameAnalyser
 			teams = new List<Team>();
 			chatMessages = new List<ChatMessage>();
 			winners = new List<int>();
+			units = new List<GameUnit>();
 		}
 
 		public void addWinner(int i)
@@ -485,21 +491,21 @@ namespace GameAnalyser
 			data.Add("mapVisibility", gameSetting.mapVisibility);
 			data.Add("mapSize", gameSetting.mapSize);
 			data.Add("mapId", map.id);
-			data.Add("popLimit", gameSetting.popLimit);
-			data.Add("treatyLength", gameSetting.treatyLength);
-			data.Add("resourceLevel", gameSetting.resourceLevel);
-			data.Add("startingAge", gameSetting.startingAge);
-			data.Add("endingAge", gameSetting.endingAge);
-			data.Add("lockDiplomacy", gameSetting.lockDiplomacy);
-			data.Add("lockSpeed", gameSetting.lockSpeed);
-			data.Add("allowCheat", gameSetting.allowCheat);
-			data.Add("aegisEnabled", gameSetting.aegisEnabled);
-			data.Add("allTech", gameSetting.allTech);
-			data.Add("teamTogether", gameSetting.teamTogether);
-			data.Add("timeLimit", victorySetting.timeLimit);
-			data.Add("scoreLimit", victorySetting.scoreLimit);
-			data.Add("victoryCondition", victorySetting.mode);
-			data.Add("relicCount", victorySetting.customRelic);
+			//data.Add("popLimit", gameSetting.popLimit);
+			//data.Add("treatyLength", gameSetting.treatyLength);
+			//data.Add("resourceLevel", gameSetting.resourceLevel);
+			//data.Add("startingAge", gameSetting.startingAge);
+			//data.Add("endingAge", gameSetting.endingAge);
+			//data.Add("lockDiplomacy", gameSetting.lockDiplomacy);
+			//data.Add("lockSpeed", gameSetting.lockSpeed);
+			//data.Add("allowCheat", gameSetting.allowCheat);
+			//data.Add("aegisEnabled", gameSetting.aegisEnabled);
+			//data.Add("allTech", gameSetting.allTech);
+			//data.Add("teamTogether", gameSetting.teamTogether);
+			//data.Add("timeLimit", victorySetting.timeLimit);
+			//data.Add("scoreLimit", victorySetting.scoreLimit);
+			//data.Add("victoryCondition", victorySetting.mode);
+			//data.Add("relicCount", victorySetting.customRelic);
 
 			Dictionary<string, object> temp = new Dictionary<string, object>();
 			Dictionary<string, object> temp1 = new Dictionary<string, object>();
@@ -512,25 +518,26 @@ namespace GameAnalyser
 				temp1.Add("civilisation", p.civilisation);
 				temp1.Add("teamListIndex", p.teamListIndex);
 				temp1.Add("teamIndex", p.teamIndex);
-				temp1.Add("resignTime", p.resignTime);
-				temp1.Add("isHuman", p.isHuman);
-				temp1.Add("isSpectator", p.isSpectator);
-				temp1.Add("isCooping", p.isCooping);
+                temp1.Add("resignTime", string.Format("{0:0.0000000}", (p.resignTime / (24.0*3600000.0))));
+				//temp1.Add("isHuman", p.isHuman);
+				//temp1.Add("isSpectator", p.isSpectator);
+				//temp1.Add("isCooping", p.isCooping);
 				temp1.Add("colourId", p.colourId);
+                temp1.Add("averageDistanceFromRelic", p.averageRelicDistance);
 
-				temp2 = new Dictionary<string, object>();
-				temp2.Add("food", p.initialState.food);
-				temp2.Add("wood", p.initialState.wood);
-				temp2.Add("gold", p.initialState.gold);
-				temp2.Add("stone", p.initialState.stone);
-				temp2.Add("startingAge", p.initialState.startingAge);
-				temp2.Add("x", p.initialState.position[0]);
-				temp2.Add("y", p.initialState.position[1]);
+				//temp2 = new Dictionary<string, object>();
+				//temp2.Add("food", p.initialState.food);
+				//temp2.Add("wood", p.initialState.wood);
+				//temp2.Add("gold", p.initialState.gold);
+				//temp2.Add("stone", p.initialState.stone);
+				//temp2.Add("startingAge", p.initialState.startingAge);
+				//temp2.Add("x", p.initialState.position[0]);
+				//temp2.Add("y", p.initialState.position[1]);
 
-				temp1.Add("initialState", temp2);
-				temp1.Add("feudalTime", p.feudalTime);
-				temp1.Add("castleTime", p.castleTime);
-				temp1.Add("imperialTime", p.imperialTime);
+				//temp1.Add("initialState", temp2);
+                temp1.Add("feudalTime", string.Format("{0:0.0000000}", (p.feudalTime / (24.0 * 3600000.0))));
+                temp1.Add("castleTime", string.Format("{0:0.0000000}", (p.castleTime / (24.0 * 3600000.0))));
+                temp1.Add("imperialTime", string.Format("{0:0.0000000}", (p.imperialTime / (24.0 * 3600000.0))));
 
 				temp.Add(p.index.ToString(), temp1);
 			}
@@ -573,7 +580,24 @@ namespace GameAnalyser
 			}
 			data.Add("winners", temp);
 
-			return JsonConvert.SerializeObject(data);
+			temp = new Dictionary<string, object>();
+			for (int i = 0; i < units.Count; i++)
+			{
+				GameUnit p = units[i];
+				temp1 = new Dictionary<string, object>();
+				temp1.Add("index", p.gameObjectId);
+				temp1.Add("id", p.id);
+				temp1.Add("owner", p.owner);
+				temp1.Add("objectType", p.objectType);
+				temp1.Add("positionX", p.positionX);
+				temp1.Add("positionY", p.positionY);
+
+				temp.Add(i.ToString(), temp1);
+			}
+
+			data.Add("units", temp);
+
+			return JsonConvert.SerializeObject(data, Formatting.Indented);
 		}
 	}
 }

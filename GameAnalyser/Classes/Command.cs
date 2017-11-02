@@ -55,17 +55,41 @@
 		public const int META_CHAT = -1;
 
 		/**
+         * Move command ID.
+         *
+         * @var int
+         */
+		public const int COMMAND_MOVE = 0x03;
+		/**
          * Resignation command ID.
          *
          * @var int
          */
 		public const int COMMAND_RESIGN = 0x0B;
 		/**
+         * Cancel research command ID.
+         *
+         * @var int
+         */
+		public const int COMMAND_CANCEL_RESEARCH = 0x01;
+		/**
          * Research command ID.
          *
          * @var int
          */
 		public const int COMMAND_RESEARCH = 0x65;
+		/**
+         * Delete unit command ID.
+         *
+         * @var int
+         */
+		public const int COMMAND_DELETE_UNIT = 0x6A;
+		/**
+         * Cancel unit training command ID.
+         *
+         * @var int
+         */
+		public const int COMMAND_CANCEL_TRAIN = 0x75;
 		/**
          * Unit training command ID.
          *
@@ -84,6 +108,12 @@
          * @var int
          */
 		public const int COMMAND_BUILD = 0x66;
+		/**
+         * Building command ID.
+         *
+         * @var int
+         */
+		public const int COMMAND_BUILD_2 = 0x69;
 		/**
          * Tribute command ID.
          *

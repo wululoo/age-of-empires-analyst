@@ -15,6 +15,7 @@ namespace GameAnalyser
 		public bool isHuman;
 		public bool isSpectator;
 		public bool owner;
+        public double averageRelicDistance;
 
 		public int colourId;
 		public bool isCooping;

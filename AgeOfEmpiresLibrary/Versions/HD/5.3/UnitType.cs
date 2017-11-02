@@ -57,8 +57,9 @@ namespace AgeOfEmpiresLibrary
         public static CivilUnit UNIT_LUMBERJACK_F = new CivilUnit(218, "Lumberjack", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static CivilUnit UNIT_STONE_MINER_F = new CivilUnit(220, "Stone Miner", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static CivilUnit UNIT_REPAIRER_F = new CivilUnit(222, "Repairer", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
-        public static MilitaryUnit UNIT_WOAD_RAIDER = new MilitaryUnit(232, "Woad Raider", Age.CASTLE_AGE, new Resources(0, 65, 25, 0), 10000, 2000, 0, 1.38f, 3, 65, null, 8, new Tuple<int, int>(0, 1));
-        public static MilitaryUnit UNIT_LONGBOAT = new MilitaryUnit(533, "Longboat", Age.CASTLE_AGE, new Resources(85, 0, 43, 0), 25000, 3000, 0, 1.54f, 8, 130, new Tuple<int, int>(0, 6), 7, new Tuple<int, int>(0, 6));
+		public static MilitaryUnit UNIT_WOAD_RAIDER = new MilitaryUnit(232, "Woad Raider", Age.CASTLE_AGE, new Resources(0, 65, 25, 0), 10000, 2000, 0, 1.38f, 3, 65, null, 8, new Tuple<int, int>(0, 1));
+		public static MilitaryUnit UNIT_LONGBOAT = new MilitaryUnit(233, "Longboat", Age.CASTLE_AGE, new Resources(85, 0, 43, 0), 25000, 3000, 0, 1.54f, 8, 130, new Tuple<int, int>(0, 6), 7, new Tuple<int, int>(0, 6));
+		public static MilitaryUnit UNIT_WAR_ELEPHANT = new MilitaryUnit(239, "War Elephant", Age.CASTLE_AGE, new Resources(0, 200, 75, 0), 31000, 2000, 0, 0.6f, 4, 450, null, 15, new Tuple<int, int>(1, 2));
         public static CivilUnit UNIT_FARMER_M = new CivilUnit(259, "Farmer", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static MilitaryUnit UNIT_SCORPION = new MilitaryUnit(279, "Scorpion", Age.CASTLE_AGE, new Resources(75, 0, 75, 0), 30000, 3600, 0.49f, 0.65f, 9, 40, new Tuple<int, int>(2, 7), 12, new Tuple<int, int>(0, 7));
         public static MilitaryUnit UNIT_MANGONEL = new MilitaryUnit(280, "Mangonel", Age.CASTLE_AGE, new Resources(160, 0, 135, 0), 46000, 6000, 0, 0.6f, 9, 50, new Tuple<int, int>(3, 7), 40, new Tuple<int, int>(0, 6));
@@ -75,7 +76,7 @@ namespace AgeOfEmpiresLibrary
         public static GaiaUnit UNIT_DEER = new GaiaUnit(333, "Deer", new Resources(0, 140, 0, 0), 0.25f, 0, 0, 0.737f, 2, 5, null, 0, new Tuple<int, int>(0, 0));
         public static CivilUnit UNIT_FORAGER_F = new CivilUnit(354, "Forager", Age.DARK_AGE, new Resources(0, 50, 0, 0), 25000, 10, 2000, 0, 0.8f, 4, 25, null, 3, new Tuple<int, int>(0, 0));
         public static MilitaryUnit UNIT_PIKEMAN = new MilitaryUnit(358, "Pikeman", Age.CASTLE_AGE, new Resources(25, 35, 0, 0), 22000, 3000, 0, 1, 4, 55, null, 4, new Tuple<int, int>(0, 0));
-        public static MilitaryUnit UNIt_HALBERDIER = new MilitaryUnit(359, "Halberdier", Age.IMPERIAL_AGE, new Resources(25, 35, 0, 0), 22000, 3000, 0, 1, 4, 60, null, 6, new Tuple<int, int>(0, 0));
+        public static MilitaryUnit UNIT_HALBERDIER = new MilitaryUnit(359, "Halberdier", Age.IMPERIAL_AGE, new Resources(25, 35, 0, 0), 22000, 3000, 0, 1, 4, 60, null, 6, new Tuple<int, int>(0, 0));
         public static MilitaryUnit UNIT_CANNON_GALLEON = new MilitaryUnit(420, "Cannon Galleon", Age.IMPERIAL_AGE, new Resources(200, 0, 150, 0), 46000, 10000, 0, 1.1f, 15, 120, new Tuple<int, int>(3, 13), 35, new Tuple<int, int>(0, 6));
         public static MilitaryUnit UNIT_CAPPED_RAM = new MilitaryUnit(422, "Capped Ram", Age.IMPERIAL_AGE, new Resources(160, 0, 75, 0), 36000, 5000, 0, 0.5f, 3, 200, null, 4, new Tuple<int, int>(0, 190));
         public static CivilUnit UNIT_KING = new CivilUnit(434, "King", Age.DARK_AGE, new Resources(0, 0, 0, 0), 0, 0, 0, 0, 1.32f, 6, 75, null, 0, new Tuple<int, int>(0, 0));
@@ -132,7 +133,7 @@ namespace AgeOfEmpiresLibrary
         public static MilitaryUnit UNIT_HUSKARL_2 = new MilitaryUnit(759, "Huskarl", Age.CASTLE_AGE, new Resources(0, 52, 26, 0), 16000, 2000, 0, 1.05f, 3, 60, null, 10, new Tuple<int, int>(0, 6));
         public static MilitaryUnit UNIT_ELITE_HUSKARL_2 = new MilitaryUnit(761, "Elite Huskarl", Age.IMPERIAL_AGE, new Resources(0, 52, 26, 0), 16000, 2000, 0, 1.05f, 5, 70, null, 12, new Tuple<int, int>(0, 8));
         public static MilitaryUnit UNIT_PLUMED_ARCHER = new MilitaryUnit(763, "Plumed Archer", Age.CASTLE_AGE, new Resources(40, 0, 40, 0), 16000, 1900, 0.35f, 1.2f, 6, 50, new Tuple<int, int>(0, 4), 5, new Tuple<int, int>(0, 1));
-        public static MilitaryUnit UNIT_ELITE_PLUMED_ARCHER = new MilitaryUnit(765, "Elite Plumed Archer", Age.IMPERIAL_AGE, new Resources(35, 35), 16000, 1900, 0.35f, 1.2f, 7, 65, new Tuple<int, int>(0, 5), 5, new Tuple<int, int>(0, 2));
+        public static MilitaryUnit UNIT_ELITE_PLUMED_ARCHER = new MilitaryUnit(765, "Elite Plumed Archer", Age.IMPERIAL_AGE, new Resources(35, 0, 35, 0), 16000, 1900, 0.35f, 1.2f, 7, 65, new Tuple<int, int>(0, 5), 5, new Tuple<int, int>(0, 2));
         public static MilitaryUnit UNIT_CONQUISTADOR = new MilitaryUnit(771, "Conquistador", Age.CASTLE_AGE, new Resources(0, 60, 70, 0), 24000, 2900, 0.28f, 1.3f, 8, 55, new Tuple<int, int>(0, 6), 16, new Tuple<int, int>(2, 2));
         public static MilitaryUnit UNIT_ELITE_CONQUISTADOR = new MilitaryUnit(773, "Elite Conquistador", Age.IMPERIAL_AGE, new Resources(0, 60, 70, 0), 24000, 2900, 0.28f, 1.3f, 8, 70, new Tuple<int, int>(0, 6), 18, new Tuple<int, int>(2, 2));
         public static MonkUnit UNIT_MISSIONARY = new MonkUnit(775, "Missionary", Age.CASTLE_AGE, new Resources(0, 0, 100, 0), 51000, 4, 62000, 5500, 0, 0.7f, 11, 30, new Tuple<int, int>(0, 9), 0, new Tuple<int, int>(0, 0));
@@ -236,7 +237,7 @@ namespace AgeOfEmpiresLibrary
         public static MilitaryStructure STRUCTURE_BLACKSMITH_3 = new MilitaryStructure(103, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
         public static MilitaryStructure STRUCTURE_MONASTERY_4 = new MilitaryStructure(104, "Monastery", Age.CASTLE_AGE, new Resources(175, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
         public static MilitaryStructure STRUCTURE_BLACKSMITH_4 = new MilitaryStructure(105, "Blacksmith", Age.FEUDAL_AGE, new Resources(150, 0, 0, 0), 40000, 5, 2100, new Tuple<int, int>(2, 9));
-        public static CivilStructure STRUCTURE_TOWN_CENTER_2 = new DefenseStructure(109, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
+        public static CivilStructure STRUCTURE_TOWN_CENTER_2 = new CivilStructure(109, "Town Center", Age.CASTLE_AGE, new Resources(275, 0, 0, 100), 150000, 7, 2400, new Tuple<int, int>(5, 7));
         public static CivilStructure STRUCTURE_MARKET_2 = new CivilStructure(116, "Market", Age.FEUDAL_AGE, new Resources(175, 0, 0, 0), 60000, 4, 2100, new Tuple<int, int>(2, 9));
         public static DefenseStructure STRUCTURE_STONE_WALL = new DefenseStructure(117, "Stone Wall", Age.FEUDAL_AGE, new Resources(0, 0, 0, 5), 10000, 2, 900, new Tuple<int, int>(8, 10));
         public static CivilStructure STRUCTURE_MILL_2 = new CivilStructure(129, "Mill", Age.DARK_AGE, new Resources(100, 0, 0, 0), 35000, 5, 1000, new Tuple<int, int>(2, 9));
@@ -327,6 +328,350 @@ namespace AgeOfEmpiresLibrary
         public static MilitaryStructure STRUCTURE_DOCK_8 = new MilitaryStructure(808, "Dock", Age.DARK_AGE, new Resources(150, 0, 0, 0), 35000, 5, 1800, new Tuple<int, int>(2, 9));
         public static MilitaryStructure STRUCTURE_HARBOR = new MilitaryStructure(1189, "Harbor", Age.IMPERIAL_AGE, new Resources(150, 0, 0, 0), 35000, 20, 2000, new Tuple<int, int>(3, 10));
 
+        public static readonly Dictionary<int, CivilStructure> CIVIL_STRUCTURES = new Dictionary<int, CivilStructure>()
+        {
+		    { 68, STRUCTURE_MILL_1 },
+		    { 70, STRUCTURE_HOUSE_1 },
+		    { 71, STRUCTURE_TOWN_CENTER_1 },
+		    { 84, STRUCTURE_MARKET_1 },
+		    { 109, STRUCTURE_TOWN_CENTER_2 },
+		    { 116, STRUCTURE_MARKET_2 },
+		    { 129, STRUCTURE_MILL_2 },
+		    { 130, STRUCTURE_MILL_3 },
+		    { 131, STRUCTURE_MILL_4 },
+		    { 137, STRUCTURE_MARKET_3 },
+		    { 141, STRUCTURE_TOWN_CENTER_3 },
+		    { 142, STRUCTURE_TOWN_CENTER_4 },
+		    { 463, STRUCTURE_HOUSE_2 },
+		    { 464, STRUCTURE_HOUSE_3 },
+		    { 465, STRUCTURE_HOUSE_4 },
+		    { 481, STRUCTURE_TOWN_CENTER_5 },
+		    { 482, STRUCTURE_TOWN_CENTER_6 },
+		    { 483, STRUCTURE_TOWN_CENTER_7 },
+		    { 484, STRUCTURE_TOWN_CENTER_8 },
+		    { 562, STRUCTURE_LUMBER_CAMP_1 },
+		    { 563, STRUCTURE_LUMBER_CAMP_2 },
+		    { 564, STRUCTURE_LUMBER_CAMP_3 },
+		    { 565, STRUCTURE_LUMBER_CAMP_4 },
+		    { 584, STRUCTURE_MINING_CAMP_1 },
+		    { 585, STRUCTURE_MINING_CAMP_2 },
+		    { 586, STRUCTURE_MINING_CAMP_3 },
+		    { 587, STRUCTURE_MINING_CAMP_4 },
+		    { 597, STRUCTURE_TOWN_CENTER_9 },
+		    { 611, STRUCTURE_TOWN_CENTER_10 },
+		    { 612, STRUCTURE_TOWN_CENTER_11 },
+		    { 613, STRUCTURE_TOWN_CENTER_12 },
+		    { 614, STRUCTURE_TOWN_CENTER_13 },
+		    { 615, STRUCTURE_TOWN_CENTER_14 },
+		    { 616, STRUCTURE_TOWN_CENTER_15 },
+		    { 617, STRUCTURE_TOWN_CENTER_16 },
+		    { 618, STRUCTURE_TOWN_CENTER_17 },
+		    { 619, STRUCTURE_TOWN_CENTER_18 },
+		    { 620, STRUCTURE_TOWN_CENTER_19 },
+		    { 621, STRUCTURE_TOWN_CENTER_20 },
+        };
+
+        public static readonly Dictionary<int, CivilUnit> CIVIL_UNITS = new Dictionary<int, CivilUnit>()
+		{
+			{ 13, UNIT_FISHING_SHIP },
+			{ 17, UNIT_TRADE_COG },
+			{ 56, UNIT_FISHERMAN_M },
+			{ 57, UNIT_FISHERMAN_F },
+			{ 83, UNIT_VILLAGER_M },
+			{ 118, UNIT_BUILDER_M },
+			{ 120, UNIT_FORAGER_M },
+			{ 122, UNIT_HUNTER_M },
+			{ 123, UNIT_LUMBERJACK_M },
+			{ 124, UNIT_STONE_MINER_M },
+			{ 128, UNIT_TRADE_CART_EMPTY },
+			{ 156, UNIT_REPAIRER_M },
+			{ 204, UNIT_TRADE_CART_FULL },
+			{ 212, UNIT_BUILDER_F },
+			{ 214, UNIT_FARMER_F },
+			{ 216, UNIT_HUNTER_F },
+			{ 218, UNIT_LUMBERJACK_F },
+			{ 220, UNIT_STONE_MINER_F },
+			{ 222, UNIT_REPAIRER_F },
+			{ 259, UNIT_FARMER_M },
+			{ 293, UNIT_VILLAGER_F },
+			{ 354, UNIT_FORAGER_F },
+			{ 434, UNIT_KING },
+			{ 545, UNIT_TRANSPORT_SHIP },
+			{ 579, UNIT_GOLD_MINER_M },
+			{ 581, UNIT_GOLD_MINER_F },
+			{ 590, UNIT_SHEPHERD_F },
+			{ 592, UNIT_SHEPHERD_M },
+			{ 1192, UNIT_FARMER_M_2 },
+		};
+
+        public static readonly Dictionary<int, DefenseStructure> DEFENSE_STRUCTURES = new Dictionary<int, DefenseStructure>()
+		{
+			{ 63, STRUCTURE_GATE_1 },
+			{ 64, STRUCTURE_GATE_2 },
+			{ 67, STRUCTURE_GATE_3 },
+			{ 72, STRUCTURE_PALISADE_WALL },
+			{ 78, STRUCTURE_GATE_4 },
+			{ 79, STRUCTURE_WATCH_TOWER_1 },
+			{ 80, STRUCTURE_GATE_5 },
+			{ 81, STRUCTURE_GATE_6 },
+			{ 85, STRUCTURE_GATE_7 },
+			{ 88, STRUCTURE_GATE_8 },
+			{ 90, STRUCTURE_GATE_9 },
+			{ 91, STRUCTURE_GATE_10 },
+			{ 92, STRUCTURE_GATE_11 },
+			{ 95, STRUCTURE_GATE_12 },
+			{ 117, STRUCTURE_STONE_WALL },
+			{ 155, STRUCTURE_FORTIFIED_WALL },
+			{ 234, STRUCTURE_GUARD_TOWER },
+			{ 235, STRUCTURE_KEEP },
+			{ 487, STRUCTURE_GATE_13 },
+			{ 488, STRUCTURE_GATE_14 },
+			{ 490, STRUCTURE_GATE_15 },
+			{ 491, STRUCTURE_GATE_16 },
+			{ 566, STRUCTURE_WATCH_TOWER_2 },
+			{ 598, STRUCTURE_OUTPOST },
+			{ 659, STRUCTURE_GATE_17 },
+			{ 660, STRUCTURE_GATE_18 },
+			{ 661, STRUCTURE_GATE_19 },
+			{ 662, STRUCTURE_GATE_20 },
+			{ 663, STRUCTURE_GATE_21 },
+			{ 664, STRUCTURE_GATE_22 },
+			{ 665, STRUCTURE_GATE_23 },
+			{ 666, STRUCTURE_GATE_24 },
+			{ 667, STRUCTURE_GATE_25 },
+			{ 668, STRUCTURE_GATE_26 },
+			{ 669, STRUCTURE_GATE_27 },
+			{ 670, STRUCTURE_GATE_28 },
+			{ 671, STRUCTURE_GATE_29 },
+			{ 672, STRUCTURE_GATE_30 },
+			{ 673, STRUCTURE_GATE_31 },
+			{ 674, STRUCTURE_GATE_32 },
+			{ 789, STRUCTURE_PALISADE_GATE_1 },
+			{ 790, STRUCTURE_PALISADE_GATE_2 },
+			{ 791, STRUCTURE_PALISADE_GATE_3 },
+			{ 792, STRUCTURE_PALISADE_GATE_4 },
+			{ 793, STRUCTURE_PALISADE_GATE_5 },
+			{ 794, STRUCTURE_PALISADE_GATE_6 },
+			{ 795, STRUCTURE_PALISADE_GATE_7 },
+			{ 796, STRUCTURE_PALISADE_GATE_8 },
+			{ 797, STRUCTURE_PALISADE_GATE_9 },
+			{ 798, STRUCTURE_PALISADE_GATE_10 },
+			{ 799, STRUCTURE_PALISADE_GATE_11 },
+			{ 800, STRUCTURE_PALISADE_GATE_12 },
+			{ 801, STRUCTURE_PALISADE_GATE_13 },
+			{ 802, STRUCTURE_PALISADE_GATE_14 },
+			{ 803, STRUCTURE_PALISADE_GATE_15 },
+			{ 804, STRUCTURE_PALISADE_GATE_16 },
+		};
+
+        public static readonly Dictionary<int, GaiaUnit> GAIA_UNITS = new Dictionary<int, GaiaUnit>()
+        {
+			{ 48, UNIT_WILD_BOAR },
+			{ 126, UNIT_WOLF },
+			{ 305, UNIT_LLAMA },
+			{ 333, UNIT_DEER },
+			{ 594, UNIT_SHEEP },
+			{ 812, UNIT_JAGUAR },
+			{ 833, UNIT_TURKEY },
+			{ 835, UNIT_WILD_HORSE },
+			{ 884, UNIT_WILD_CAMEL },
+			{ 897, UNIT_CAMEL_GAIA },
+			{ 936, UNIT_ELEPHANT },
+			{ 1019, UNIT_ZEBRA },
+			{ 1026, UNIT_OSTRICH },
+			{ 1029, UNIT_LION },
+			{ 1031, UNIT_CROCODILE },
+			{ 1060, UNIT_GOAT },
+			{ 1137, UNIT_TIGER },
+		};
+
+        public static readonly Dictionary<int, MilitaryStructure> MILITARY_STRUCTURE = new Dictionary<int, MilitaryStructure>()
+        {
+			{ 10, STRUCTURE_ARCHERY_RANGE_1 },
+			{ 12, STRUCTURE_BARRACK_1 },
+			{ 14, STRUCTURE_ARCHERY_RANGE_2 },
+			{ 18, STRUCTURE_BLACKSMITH_1 },
+			{ 19, STRUCTURE_BLACKSMITH_2 },
+			{ 20, STRUCTURE_BARRACK_2 },
+			{ 30, STRUCTURE_MONASTERY_1 },
+			{ 31, STRUCTURE_MONASTERY_2 },
+			{ 32, STRUCTURE_MONASTERY_3 },
+			{ 45, STRUCTURE_DOCK_1 },
+			{ 47, STRUCTURE_DOCK_2 },
+			{ 49, STRUCTURE_SIEGE_WORKSHOP_1 },
+			{ 51, STRUCTURE_DOCK_3 },
+			{ 82, STRUCTURE_CASTLE },
+			{ 86, STRUCTURE_STABLE_1 },
+			{ 87, STRUCTURE_ARCHERY_RANGE_3 },
+			{ 103, STRUCTURE_BLACKSMITH_3 },
+			{ 104, STRUCTURE_MONASTERY_4 },
+			{ 105, STRUCTURE_BLACKSMITH_4 },
+			{ 132, STRUCTURE_BARRACK_3 },
+			{ 133, STRUCTURE_DOCK_4 },
+			{ 150, STRUCTURE_SIEGE_WORKSHOP_2 },
+			{ 153, STRUCTURE_STABLE_2 },
+			{ 209, STRUCTURE_UNIVERSITY_1 },
+			{ 210, STRUCTURE_UNIVERSITY_2 },
+			{ 498, STRUCTURE_BARRACK_4 },
+			{ 805, STRUCTURE_DOCK_5 },
+			{ 806, STRUCTURE_DOCK_6 },
+			{ 807, STRUCTURE_DOCK_7 },
+			{ 808, STRUCTURE_DOCK_8 },
+			{ 1189, STRUCTURE_HARBOR },
+		};
+
+        public static readonly Dictionary<int, MilitaryUnit> MILITARY_UNIT = new Dictionary<int, MilitaryUnit>()
+        {
+			{ 4, UNIT_ARCHER },
+			{ 5, UNIT_HAND_CANNONEER },
+			{ 6, UNIT_ELITE_SKIRMISHER },
+			{ 7, UNIT_SKIRMISHER },
+			{ 8, UNIT_LONGBOWMAN },
+			{ 11, UNIT_MANGUDAI },
+			{ 21, UNIT_WAR_GALLEY },
+			{ 24, UNIT_CROSSBOWMAN },
+			{ 25, UNIT_TEUTONIC_KNIGHT },
+			{ 35, UNIT_BATTERING_RAM },
+			{ 36, UNIT_BOMBARD_CANNON },
+			{ 38, UNIT_KNIGHT },
+			{ 39, UNIT_CAVALRY_ARCHER },
+			{ 40, UNIT_CATAPHRACT },
+			{ 41, UNIT_HUSKARL },
+			{ 331, UNIT_TREBUCHET_UNPACKED },
+			{ 46, UNIT_JANISSARY },
+			{ 73, UNIT_CHU_KO_NU },
+			{ 74, UNIT_MILITIA },
+			{ 75, UNIT_MAN_AT_ARMS },
+			{ 77, UNIT_LONG_SWORDSMAN },
+			{ 93, UNIT_SPEARMAN },
+			{ 183, UNIT_CONDOTTIERO },
+			{ 185, UNIT_SLINGER },
+			{ 207, UNIT_IMPERIAL_CAMEL },
+			{ 232, UNIT_WOAD_RAIDER },
+			{ 233, UNIT_LONGBOAT },
+			{ 239, UNIT_WAR_ELEPHANT },
+			{ 279, UNIT_SCORPION },
+			{ 280, UNIT_MANGONEL },
+			{ 281, UNIT_THROWING_AXEMAN },
+			{ 282, UNIT_MAMELUKE },
+			{ 283, UNIT_CAVALIER },
+			{ 291, UNIT_SAMURAI },
+			{ 329, UNIT_CAMEL },
+			{ 330, UNIT_HEAVY_CAMEL },
+			{ 331, UNIT_TREBUCHET_PACKED },
+			{ 358, UNIT_PIKEMAN },
+			{ 359, UNIT_HALBERDIER },
+			{ 420, UNIT_CANNON_GALLEON },
+			{ 422, UNIT_CAPPED_RAM },
+			{ 440, UNIT_PETARD },
+			{ 441, UNIT_HUSSAR },
+			{ 442, UNIT_GALLEON },
+			{ 448, UNIT_SCOUT_CAVALRY },
+			{ 473, UNIT_TWO_HANDED_SWORDSMAN },
+			{ 474, UNIT_HEAVY_CAVALRY_ARCHER },
+			{ 492, UNIT_ARBALEST },
+			{ 527, UNIT_DEMOLITION_SHIP },
+			{ 528, UNIT_HEAVY_DEMOLITION_SHIP },
+			{ 529, UNIT_FIRE_SHIP },
+			{ 530, UNIT_ELITE_LONGBOWMAN },
+			{ 531, UNIT_ELITE_THROWING_AXEMAN },
+			{ 532, UNIT_FAST_FIRE_SHIP },
+			{ 533, UNIT_ELITE_LONGBOAT },
+			{ 534, UNIT_ELITE_WOAD_RAIDER },
+			{ 539, UNIT_GALLEY },
+			{ 542, UNIT_HEAVY_SCORPION },
+			{ 546, UNIT_LIGHT_CAVALRY },
+			{ 548, UNIT_SIEGE_RAM },
+			{ 550, UNIT_ONAGER },
+			{ 553, UNIT_ELITE_CATAPHRACT },
+			{ 554, UNIT_ELITE_TEUTONIC_KNIGHT },
+			{ 555, UNIT_ELITE_HUSKARL },
+			{ 556, UNIT_ELITE_MAMELUKE },
+			{ 567, UNIT_ELITE_JANISSARY },
+			{ 568, UNIT_ELITE_WAR_ELEPHANT },
+			{ 559, UNIT_ELITE_CHU_KO_NU },
+			{ 560, UNIT_ELITE_SAMURAI },
+			{ 561, UNIT_ELITE_MANGUDAI },
+			{ 567, UNIT_CHAMPION },
+			{ 569, UNIT_PALADIN },
+			{ 583, UNIT_GENITOUR },
+			{ 588, UNIT_SIEGE_ONAGER },
+			{ 596, UNIT_ELITE_GENITOUR },
+			{ 691, UNIT_ELITE_CANNON_GALLEON },
+			{ 692, UNIT_BERSERK },
+			{ 694, UNIT_ELITE_BERSERK },
+			{ 725, UNIT_JAGUAR_WARRIOR },
+			{ 726, UNIT_ELITE_JAGUAR_WARRIOR },
+			{ 751, UNIT_EAGLE_SCOUT },
+			{ 752, UNIT_ELITE_EAGLE_WARRIOR },
+			{ 753, UNIT_EAGLE_WARRIOR },
+			{ 755, UNIT_TARKAN },
+			{ 757, UNIT_ELITE_TARKAN },
+			{ 759, UNIT_HUSKARL_2 },
+			{ 761, UNIT_ELITE_HUSKARL_2 },
+			{ 763, UNIT_PLUMED_ARCHER },
+			{ 765, UNIT_ELITE_PLUMED_ARCHER },
+			{ 771, UNIT_CONQUISTADOR },
+			{ 773, UNIT_ELITE_CONQUISTADOR },
+			{ 827, UNIT_WAR_WAGON },
+			{ 829, UNIT_ELITE_WAR_WAGON },
+			{ 831, UNIT_TURTLE_SHIP },
+			{ 832, UNIT_ELITE_TURTLE_SHIP },
+			{ 866, UNIT_GENOESE_CROSSBOWMAN },
+			{ 868, UNIT_ELITE_GENOESE_CROSSBOWMAN },
+			{ 869, UNIT_MAGYAR_HUSZAR },
+			{ 871, UNIT_ELITE_MAGYAR_HUSZAR },
+			{ 873, UNIT_ELEPHANT_ARCHER },
+			{ 875, UNIT_ELITE_ELEPHANT_ARCHER },
+			{ 876, UNIT_BOYAR },
+			{ 878, UNIT_ELITE_BOYAR },
+			{ 879, UNIT_KAMAYUK },
+			{ 881, UNIT_ELITE_KAMAYUK },
+			{ 882, UNIT_CONDOTTIERO_2 },
+			{ 885, UNIT_SIEGE_TOWER },
+			{ 886, UNIT_TARKAN_2 },
+			{ 887, UNIT_ELITE_TARKAN_2 },
+			{ 1001, UNIT_ORGAN_GUN },
+			{ 1003, UNIT_ELITE_ORGAN_GUN },
+			{ 1004, UNIT_CARAVEL },
+			{ 1006, UNIT_ELITE_CARAVEL },
+			{ 1007, UNIT_CAMEL_ARCHER },
+			{ 1009, UNIT_ELITE_CAMEL_ARCHER },
+			{ 1010, UNIT_GENITOUR_2 },
+			{ 1012, UNIT_ELITE_GENITOUR_2 },
+			{ 1013, UNIT_GBETO },
+			{ 1015, UNIT_ELITE_GBETO },
+			{ 1016, UNIT_SHOTEL_WARRIOR },
+			{ 1018, UNIT_ELITE_SHOTEL_WARRIOR },
+			{ 1103, UNIT_FIRE_GALLEY },
+			{ 1104, UNIT_DEMOLITION_RAFT },
+			{ 1105, UNIT_SIEGE_TOWER_2 },
+			{ 1120, UNIT_BALLISTA_ELEPHANT },
+			{ 1122, UNIT_ELITE_BALLISTA_ELEPHANT },
+			{ 1123, UNIT_KARAMBIT_WARRIOR },
+			{ 1125, UNIT_ELITE_KARAMBIT_WARRIOR },
+			{ 1126, UNIT_ARAMBAI },
+			{ 1128, UNIT_ELITE_ARAMBAI },
+			{ 1129, UNIT_RATTAN_ARCHER },
+			{ 1131, UNIT_ELITE_RATTAN_ARCHER },
+			{ 1132, UNIT_BATTLE_ELEPHANT },
+			{ 1134, UNIT_ELITE_BATTLE_ELEPHANT },
+			{ 1155, UNIT_IMPERIAL_SKIRMISHER },
+		};
+
+        public static readonly Dictionary<int, MonkUnit> MONK_UNITS = new Dictionary<int, MonkUnit>()
+        {
+			{ 125, UNIT_MONK },
+			{ 286, UNIT_MONK_WITH_RELIC },
+			{ 775, UNIT_MISSIONARY },
+		};
+
+        public static readonly Dictionary<int, ResourceStructure> RESOURCE_STRUCTURE = new Dictionary<int, ResourceStructure>()
+        {
+            { 50, STRUCTURE_FARM },
+            { 199, STRUCTURE_FISH_TRAP },
+        };
+
         public static readonly List<CivilUnit> VILLAGER = new List<CivilUnit>(){
 
             UNIT_VILLAGER_M, UNIT_VILLAGER_F, UNIT_FARMER_M, UNIT_FARMER_M_2, UNIT_FARMER_F,
@@ -344,7 +689,7 @@ namespace AgeOfEmpiresLibrary
 
         public static readonly List<MilitaryUnit> SPEARMAN = new List<MilitaryUnit>(){
 
-            UNIT_SPEARMAN, UNIT_PIKEMAN, UNIt_HALBERDIER
+            UNIT_SPEARMAN, UNIT_PIKEMAN, UNIT_HALBERDIER
 
         };
 
@@ -583,7 +928,7 @@ namespace AgeOfEmpiresLibrary
 
         };
 
-        public static readonly List<ResourceStructure> RESOURCE_STRUCTURE = new List<ResourceStructure>(){
+        public static readonly List<ResourceStructure> RESOURCE_STRUCTURES = new List<ResourceStructure>(){
 
             STRUCTURE_FARM, STRUCTURE_FISH_TRAP
 
@@ -985,6 +1330,201 @@ namespace AgeOfEmpiresLibrary
         public static bool isSiegeUnit(int id)
         {
             return isSiegeWorkshopUnit(id) || isTrebuchet(id);
+        }
+
+        //
+        //
+        //
+
+        public static List<Unit> getAllUnit()
+        {
+            List<Unit> list = new List<Unit>();
+			list.Add(UNIT_ARCHER);
+			list.Add(UNIT_HAND_CANNONEER);
+			list.Add(UNIT_ELITE_SKIRMISHER);
+			list.Add(UNIT_SKIRMISHER);
+			list.Add(UNIT_LONGBOWMAN);
+			list.Add(UNIT_MANGUDAI);
+			list.Add(UNIT_FISHING_SHIP);
+			list.Add(UNIT_TRADE_COG);
+			list.Add(UNIT_WAR_GALLEY);
+			list.Add(UNIT_CROSSBOWMAN);
+			list.Add(UNIT_TEUTONIC_KNIGHT);
+			list.Add(UNIT_BATTERING_RAM);
+			list.Add(UNIT_BOMBARD_CANNON);
+			list.Add(UNIT_KNIGHT);
+			list.Add(UNIT_CAVALRY_ARCHER);
+			list.Add(UNIT_CATAPHRACT);
+			list.Add(UNIT_HUSKARL);
+			list.Add(UNIT_TREBUCHET_UNPACKED);
+			list.Add(UNIT_JANISSARY);
+			list.Add(UNIT_WILD_BOAR);
+			list.Add(UNIT_FISHERMAN_M);
+			list.Add(UNIT_FISHERMAN_F);
+			list.Add(UNIT_CHU_KO_NU);
+			list.Add(UNIT_MILITIA);
+			list.Add(UNIT_MAN_AT_ARMS);
+			list.Add(UNIT_LONG_SWORDSMAN);
+			list.Add(UNIT_VILLAGER_M);
+			list.Add(UNIT_SPEARMAN);
+			list.Add(UNIT_BUILDER_M);
+			list.Add(UNIT_FORAGER_M);
+			list.Add(UNIT_HUNTER_M);
+			list.Add(UNIT_LUMBERJACK_M);
+			list.Add(UNIT_STONE_MINER_M);
+			list.Add(UNIT_MONK);
+			list.Add(UNIT_WOLF);
+			list.Add(UNIT_TRADE_CART_EMPTY);
+			list.Add(UNIT_REPAIRER_M);
+			list.Add(UNIT_CONDOTTIERO);
+			list.Add(UNIT_SLINGER);
+			list.Add(UNIT_TRADE_CART_FULL);
+			list.Add(UNIT_IMPERIAL_CAMEL);
+			list.Add(UNIT_BUILDER_F);
+			list.Add(UNIT_FARMER_F);
+			list.Add(UNIT_HUNTER_F);
+			list.Add(UNIT_LUMBERJACK_F);
+			list.Add(UNIT_STONE_MINER_F);
+			list.Add(UNIT_REPAIRER_F);
+			list.Add(UNIT_WOAD_RAIDER);
+			list.Add(UNIT_LONGBOAT);
+			list.Add(UNIT_WAR_ELEPHANT);
+			list.Add(UNIT_FARMER_M);
+			list.Add(UNIT_SCORPION);
+			list.Add(UNIT_MANGONEL);
+			list.Add(UNIT_THROWING_AXEMAN);
+			list.Add(UNIT_MAMELUKE);
+			list.Add(UNIT_CAVALIER);
+			list.Add(UNIT_MONK_WITH_RELIC);
+			list.Add(UNIT_SAMURAI);
+			list.Add(UNIT_VILLAGER_F);
+			list.Add(UNIT_LLAMA);
+			list.Add(UNIT_CAMEL);
+			list.Add(UNIT_HEAVY_CAMEL);
+			list.Add(UNIT_TREBUCHET_PACKED);
+			list.Add(UNIT_DEER);
+			list.Add(UNIT_FORAGER_F);
+			list.Add(UNIT_PIKEMAN);
+			list.Add(UNIT_HALBERDIER);
+			list.Add(UNIT_CANNON_GALLEON);
+			list.Add(UNIT_CAPPED_RAM);
+			list.Add(UNIT_KING);
+			list.Add(UNIT_PETARD);
+			list.Add(UNIT_HUSSAR);
+			list.Add(UNIT_GALLEON);
+			list.Add(UNIT_SCOUT_CAVALRY);
+			list.Add(UNIT_TWO_HANDED_SWORDSMAN);
+			list.Add(UNIT_HEAVY_CAVALRY_ARCHER);
+			list.Add(UNIT_ARBALEST);
+			list.Add(UNIT_DEMOLITION_SHIP);
+			list.Add(UNIT_HEAVY_DEMOLITION_SHIP);
+			list.Add(UNIT_FIRE_SHIP);
+			list.Add(UNIT_ELITE_LONGBOWMAN);
+			list.Add(UNIT_ELITE_THROWING_AXEMAN);
+			list.Add(UNIT_FAST_FIRE_SHIP);
+			list.Add(UNIT_ELITE_LONGBOAT);
+			list.Add(UNIT_ELITE_WOAD_RAIDER);
+			list.Add(UNIT_GALLEY);
+			list.Add(UNIT_HEAVY_SCORPION);
+			list.Add(UNIT_TRANSPORT_SHIP);
+			list.Add(UNIT_LIGHT_CAVALRY);
+			list.Add(UNIT_SIEGE_RAM);
+			list.Add(UNIT_ONAGER);
+			list.Add(UNIT_ELITE_CATAPHRACT);
+			list.Add(UNIT_ELITE_TEUTONIC_KNIGHT);
+			list.Add(UNIT_ELITE_HUSKARL);
+			list.Add(UNIT_ELITE_MAMELUKE);
+			list.Add(UNIT_ELITE_JANISSARY);
+			list.Add(UNIT_ELITE_WAR_ELEPHANT);
+			list.Add(UNIT_ELITE_CHU_KO_NU);
+			list.Add(UNIT_ELITE_SAMURAI);
+			list.Add(UNIT_ELITE_MANGUDAI);
+			list.Add(UNIT_CHAMPION);
+			list.Add(UNIT_PALADIN);
+			list.Add(UNIT_GOLD_MINER_M);
+			list.Add(UNIT_GOLD_MINER_F);
+			list.Add(UNIT_GENITOUR);
+			list.Add(UNIT_SIEGE_ONAGER);
+			list.Add(UNIT_SHEPHERD_F);
+			list.Add(UNIT_SHEPHERD_M);
+			list.Add(UNIT_SHEEP);
+			list.Add(UNIT_ELITE_GENITOUR);
+			list.Add(UNIT_ELITE_CANNON_GALLEON);
+			list.Add(UNIT_BERSERK);
+			list.Add(UNIT_ELITE_BERSERK);
+			list.Add(UNIT_JAGUAR_WARRIOR);
+			list.Add(UNIT_ELITE_JAGUAR_WARRIOR);
+			list.Add(UNIT_EAGLE_SCOUT);
+			list.Add(UNIT_ELITE_EAGLE_WARRIOR);
+			list.Add(UNIT_EAGLE_WARRIOR);
+			list.Add(UNIT_TARKAN);
+			list.Add(UNIT_ELITE_TARKAN);
+			list.Add(UNIT_HUSKARL_2);
+			list.Add(UNIT_ELITE_HUSKARL_2);
+			list.Add(UNIT_PLUMED_ARCHER);
+			list.Add(UNIT_ELITE_PLUMED_ARCHER);
+			list.Add(UNIT_CONQUISTADOR);
+			list.Add(UNIT_ELITE_CONQUISTADOR);
+			list.Add(UNIT_MISSIONARY);
+			list.Add(UNIT_JAGUAR);
+			list.Add(UNIT_WAR_WAGON);
+			list.Add(UNIT_ELITE_WAR_WAGON);
+			list.Add(UNIT_TURTLE_SHIP);
+			list.Add(UNIT_ELITE_TURTLE_SHIP);
+			list.Add(UNIT_TURKEY);
+			list.Add(UNIT_WILD_HORSE);
+			list.Add(UNIT_GENOESE_CROSSBOWMAN);
+			list.Add(UNIT_ELITE_GENOESE_CROSSBOWMAN);
+			list.Add(UNIT_MAGYAR_HUSZAR);
+			list.Add(UNIT_ELITE_MAGYAR_HUSZAR);
+			list.Add(UNIT_ELEPHANT_ARCHER);
+			list.Add(UNIT_ELITE_ELEPHANT_ARCHER);
+			list.Add(UNIT_BOYAR);
+			list.Add(UNIT_ELITE_BOYAR);
+			list.Add(UNIT_KAMAYUK);
+			list.Add(UNIT_ELITE_KAMAYUK);
+			list.Add(UNIT_CONDOTTIERO_2);
+			list.Add(UNIT_WILD_CAMEL);
+			list.Add(UNIT_SIEGE_TOWER);
+			list.Add(UNIT_TARKAN_2);
+			list.Add(UNIT_ELITE_TARKAN_2);
+			list.Add(UNIT_CAMEL_GAIA);
+			list.Add(UNIT_ELEPHANT);
+			list.Add(UNIT_ORGAN_GUN);
+			list.Add(UNIT_ELITE_ORGAN_GUN);
+			list.Add(UNIT_CARAVEL);
+			list.Add(UNIT_ELITE_CARAVEL);
+			list.Add(UNIT_CAMEL_ARCHER);
+			list.Add(UNIT_ELITE_CAMEL_ARCHER);
+			list.Add(UNIT_GENITOUR_2);
+			list.Add(UNIT_ELITE_GENITOUR_2);
+			list.Add(UNIT_GBETO);
+			list.Add(UNIT_ELITE_GBETO);
+			list.Add(UNIT_SHOTEL_WARRIOR);
+			list.Add(UNIT_ELITE_SHOTEL_WARRIOR);
+			list.Add(UNIT_ZEBRA);
+			list.Add(UNIT_OSTRICH);
+			list.Add(UNIT_LION);
+			list.Add(UNIT_CROCODILE);
+			list.Add(UNIT_GOAT);
+			list.Add(UNIT_FIRE_GALLEY);
+			list.Add(UNIT_DEMOLITION_RAFT);
+			list.Add(UNIT_SIEGE_TOWER_2);
+			list.Add(UNIT_BALLISTA_ELEPHANT);
+			list.Add(UNIT_ELITE_BALLISTA_ELEPHANT);
+			list.Add(UNIT_KARAMBIT_WARRIOR);
+			list.Add(UNIT_ELITE_KARAMBIT_WARRIOR);
+			list.Add(UNIT_ARAMBAI);
+			list.Add(UNIT_ELITE_ARAMBAI);
+			list.Add(UNIT_RATTAN_ARCHER);
+			list.Add(UNIT_ELITE_RATTAN_ARCHER);
+			list.Add(UNIT_BATTLE_ELEPHANT);
+			list.Add(UNIT_ELITE_BATTLE_ELEPHANT);
+			list.Add(UNIT_TIGER);
+			list.Add(UNIT_IMPERIAL_SKIRMISHER);
+			list.Add(UNIT_FARMER_M_2);
+
+            return list;
         }
 	}
 }

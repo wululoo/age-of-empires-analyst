@@ -1,10 +1,7 @@
 ﻿using System;
 namespace AgeOfEmpiresLibrary
 {
-    public class SyncCommand : Command
-    {
-        public SyncCommand()
-        {
-        }
-    }
+    //public class SyncCommand : Command
+    //{
+    //}
 }

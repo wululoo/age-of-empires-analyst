@@ -1,10 +1,8 @@
 ﻿using System;
 namespace AgeOfEmpiresLibrary
 {
-    public class Unit
+    public class Unit : Createable
     {
-        public int id;
-        public string name;
         public int hp;
         public int reloadTime;
         public float attackDelay;

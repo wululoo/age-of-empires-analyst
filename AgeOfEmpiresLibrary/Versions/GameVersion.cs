@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-namespace GameAnalyser
+namespace AgeOfEmpiresLibrary
 {
-	class GameVersion
+	public static class GameVersion
 	{
 		/**
          * Version ID for unknown game versions.
@@ -138,6 +138,13 @@ namespace GameAnalyser
          */
 		public const int VERSION_HD48 = 18;
 
+        /**
+         * Version ID for HD Edition patch 5.0.
+         *
+         * @var int
+         */
+        public const int VERSION_HD50 = 19;
+
 		/**
 		* Trial game version IDs.
 		*
@@ -190,32 +197,14 @@ namespace GameAnalyser
          *
          * @var intnew int[] {}
          */
-		//public static int[] hdVersions = new int[] {
-		//	GameVersion.VERSION_HD,
-		//	GameVersion.VERSION_HD43,
-		//	GameVersion.VERSION_HD46,
-  //          // Currently unused: HD 4.6 and 4.7 use the same file format, so we can't
-  //          // easily detect which one it is.
-  //          GameVersion.VERSION_HD47,
-		//	GameVersion.VERSION_HD48,
-		//};
-
-		//private RecordedGame recordedGame;
-		//private string versionString;
-		//private int version;
-		//private double subVersion;
-
-		//public GameVersion(RecordedGame game, string versionString, double subVersion)
-		//{
-		//	recordedGame = game;
-		//	this.versionString = versionString;
-		//	this.subVersion = subVersion;
-		//}
-
-		//public string getName()
-		//{
-		//	return recordedGame.trans("game_versions", version);
-		//}
+		public static int[] hdVersions = new int[] {
+			GameVersion.VERSION_HD,
+			GameVersion.VERSION_HD43,
+			GameVersion.VERSION_HD46,
+            GameVersion.VERSION_HD47,
+			GameVersion.VERSION_HD48,
+            GameVersion.VERSION_HD50,
+		};
 
 		public static int getVersionConstant(string versionString, double subVersion)
 		{
@@ -304,5 +293,29 @@ namespace GameAnalyser
 			return !isAoK(version);
 		}
 
+        public static bool isMgl(string fileFormat)
+        {
+            return fileFormat == ".mgl";
+        }
+
+        public static bool isMgx(string fileFormat)
+        {
+            return fileFormat == ".mgx";
+        }
+
+        public static bool isMgz(string fileFormat)
+        {
+            return fileFormat == ".mgz";
+        }
+
+        public static bool isMsx(string fileFormat)
+        {
+            return fileFormat == ".msx";
+        }
+
+        public static bool isAoe2Record(string fileFormat)
+        {
+            return fileFormat == ".aoe2record";
+        }
 	}
 }

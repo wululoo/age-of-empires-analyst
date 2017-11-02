@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AgeOfEmpiresLibrary
 {
-	public static class Civilisation
+	public static class CivilisationType
 	{
 		public const int NONE = 0;
 		public const int BRITONS = 1;

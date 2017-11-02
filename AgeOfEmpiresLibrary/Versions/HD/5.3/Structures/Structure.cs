@@ -1,16 +1,14 @@
 ﻿using System;
 namespace AgeOfEmpiresLibrary
 {
-    public class Structure
+    public class Structure : Createable
     {
-		public int id;
         public Resources cost;
-		public string name;
         public int age;
         public int duration;
 		public int hp;
 		public int los;
-		public Tuple<int, int> armor;
+        public Tuple<int, int> armor;
 
         public Structure(int id, string name, int age, Resources cost, int duration, int los, int hp, Tuple<int, int> armor)
         {

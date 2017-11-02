@@ -45,6 +45,11 @@ namespace AgeOfEmpiresLibrary
             }
         }
 
+        public bool isValid()
+        {
+            return wood > 0 && food > 0 && gold > 0 && stone > 0 ? true : false;
+        }
+
         public static Resources operator +(Resources a, Resources b)
         {
             a.wood += b.wood;

@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpertTerminal", "ExpertTerminal\ExpertTerminal.csproj", "{53DAFB51-22BD-4221-A81B-3EB3086E88C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -24,5 +26,9 @@ Global
 		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Debug|x86.Build.0 = Debug|Any CPU
 		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Release|x86.ActiveCfg = Release|Any CPU
 		{7C3BEB82-5470-4E2F-A00D-0BAEF2EA095E}.Release|x86.Build.0 = Release|Any CPU
+		{53DAFB51-22BD-4221-A81B-3EB3086E88C8}.Debug|x86.ActiveCfg = Debug|x86
+		{53DAFB51-22BD-4221-A81B-3EB3086E88C8}.Debug|x86.Build.0 = Debug|x86
+		{53DAFB51-22BD-4221-A81B-3EB3086E88C8}.Release|x86.ActiveCfg = Release|x86
+		{53DAFB51-22BD-4221-A81B-3EB3086E88C8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

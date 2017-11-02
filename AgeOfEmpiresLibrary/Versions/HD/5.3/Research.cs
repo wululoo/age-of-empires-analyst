@@ -27,5 +27,30 @@
         {
             return name;
         }
+
+        public int getAge()
+        {
+            return age;
+        }
+
+        public int getWoodCost()
+        {
+            return cost.wood;
+        }
+
+        public int getFoodCost()
+        {
+            return cost.food;
+        }
+
+        public int getGoldCost()
+        {
+            return cost.gold;
+        }
+
+        public int getStoneCost()
+        {
+            return cost.stone;
+        }
     }
 }

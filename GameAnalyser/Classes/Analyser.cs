@@ -1420,895 +1420,951 @@ namespace GameAnalyser
 			return fileFormat == ".aoe2record";
 		}
 
-		public static RecordedGame analyseGameROR(List<byte> headerByteList, List<byte> bodyByteList, string fileName, string fileFormat)
-		{
-			int operationType;
-			int playerIndex; // multipurpose
-			int currentTime = 0;
-			int unitType; // multipurpose
-			byte[] tempByteArray; // multipurpose
-			int messageCount;
-			Player player;
-			Team team;
-			List<ChatMessage> pregameChat = new List<ChatMessage>();
+        public static RecordedGame analyseGameROR(List<byte> headerByteList, List<byte> bodyByteList, string fileName, string fileFormat)
+        {
+            int operationType;
+            int playerIndex; // multipurpose
+            int currentTime = 0;
+            int unitType; // multipurpose
+            byte[] tempByteArray; // multipurpose
+            int messageCount;
+            Player player;
+            Team team;
+            List<ChatMessage> pregameChat = new List<ChatMessage>();
 
-			// Body Analyser variables
-			byte[] bodyByteArray = bodyByteList.ToArray();
-			List<TrainCommand> trainingOrdersAI = new List<TrainCommand>();
-			List<TributeCommand> tributeOrders = new List<TributeCommand>();
-			SummaryAchievement summary;
-			EconAchievement economy;
-			SocialAchievement society;
-			TechAchievement technology;
-			MilitaryAchievement military;
+            // Body Analyser variables
+            byte[] bodyByteArray = bodyByteList.ToArray();
+            List<TrainCommand> trainingOrdersAI = new List<TrainCommand>();
+            List<TributeCommand> tributeOrders = new List<TributeCommand>();
+            SummaryAchievement summary;
+            EconAchievement economy;
+            SocialAchievement society;
+            TechAchievement technology;
+            MilitaryAchievement military;
 
-			List<Team> teams = new List<Team>();
-			Dictionary<int, Player> players = new Dictionary<int, Player>();
-			byte[] headerByteArray = headerByteList.ToArray();
-			Dictionary<string, string> introMessages = new Dictionary<string, string>();
+            List<Team> teams = new List<Team>();
+            Dictionary<int, Player> players = new Dictionary<int, Player>();
+            byte[] headerByteArray = headerByteList.ToArray();
+            Dictionary<string, string> introMessages = new Dictionary<string, string>();
 
-			int position = 0;
+            int position = 0;
 
-			RecordedGame recordedGame = new RecordedGame();
+            RecordedGame recordedGame = new RecordedGame();
 
-			int length = headerByteList.Count;
+            int length = headerByteList.Count;
 
-			string versionString = Encoding.ASCII.GetString(headerByteList.GetRange(0, 8).ToArray()).Trim();
-			position += 8;
-			versionString = versionString.Substring(versionString.Length - 1) == "\0" ? versionString.Substring(0, versionString.Length - 1) : versionString;
-			double subVersionConstant = Math.Round(BitConverter.ToSingle(headerByteArray, position), 2);
-			position += 4;
-			int versionConstant = GameVersion.getVersionConstant(versionString, subVersionConstant);
-			recordedGame.setSubVersion(subVersionConstant);
-			recordedGame.setVersion(versionConstant);
-			position = 8;
-
-
-			int triggerInfoPos = Utility.IndexOf(headerByteList, GameConstants.CONSTANT) + GameConstants.CONSTANT.Length;
-
-			int gameSettingsPos = Utility.LastIndexOf(headerByteList.GetRange(0, triggerInfoPos), GameConstants.SEPARATOR) + GameConstants.SEPARATOR.Length;
-
-			byte[] scenarioSeparator = isAoK(versionConstant) ? GameConstants.AOK_SEPARATOR : isAoe2Record(fileFormat) ? GameConstants.AOE2_RECORD_SCENARIO_SEPARATOR : GameConstants.SCENARIO_CONSTANT;
-
-			int scenarioHeaderPos = Utility.LastIndexOf(headerByteList.GetRange(0, gameSettingsPos), scenarioSeparator) + 4;
-
-			position = 20;
-
-			if (BitConverter.ToInt32(headerByteArray, position) != 1)
-				position += 4 * 4;
-			else
-				position += 28;
-
-			// Difficulty Level
-			recordedGame.setDifficultyLevel(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Map Size
-			recordedGame.setMapSize(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// MAP ID
-			//recordedGame.setMapId(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Map Visibility
-			recordedGame.setMapVisibility(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Victory Condition
-			int victoryCondition = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-
-			// Starting Resources
-			recordedGame.setResourceLevel(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Starting Age
-			recordedGame.setStartingAge(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Ending Age
-			recordedGame.setEndingAge(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Game Type
-			recordedGame.setGameType(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
+            string versionString = Encoding.ASCII.GetString(headerByteList.GetRange(0, 8).ToArray()).Trim();
+            position += 8;
+            versionString = versionString.Substring(versionString.Length - 1) == "\0" ? versionString.Substring(0, versionString.Length - 1) : versionString;
+            double subVersionConstant = Math.Round(BitConverter.ToSingle(headerByteArray, position), 2);
+            position += 4;
+            int versionConstant = GameVersion.getVersionConstant(versionString, subVersionConstant);
+            recordedGame.setSubVersion(subVersionConstant);
+            recordedGame.setVersion(versionConstant);
+            position = 8;
 
 
-			position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
-			position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
+            int triggerInfoPos = Utility.IndexOf(headerByteList, GameConstants.CONSTANT) + GameConstants.CONSTANT.Length;
 
-			// Game Speed
-			recordedGame.setGameSpeed((int)(100 * BitConverter.ToSingle(headerByteArray, position)));
-			position += 4;
+            int gameSettingsPos = Utility.LastIndexOf(headerByteList.GetRange(0, triggerInfoPos), GameConstants.SEPARATOR) + GameConstants.SEPARATOR.Length;
 
-			// Treaty Length
-			recordedGame.setTreatyLength(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
+            byte[] scenarioSeparator = isAoK(versionConstant) ? GameConstants.AOK_SEPARATOR : isAoe2Record(fileFormat) ? GameConstants.AOE2_RECORD_SCENARIO_SEPARATOR : GameConstants.SCENARIO_CONSTANT;
 
-			// Pop Limit
-			recordedGame.setPopLimit(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
+            int scenarioHeaderPos = Utility.LastIndexOf(headerByteList.GetRange(0, gameSettingsPos), scenarioSeparator) + 4;
 
-			// Player Count
-			int playerCount = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
+            position = 20;
 
-			// Unknwon
-			position += 4;
+            if (BitConverter.ToInt32(headerByteArray, position) != 1)
+                position += 4 * 4;
+            else
+                position += 28;
 
-			// Time Limit OR Score Limit
-			int victoryAmount = BitConverter.ToInt32(headerByteArray, position);
-			recordedGame.setVictory(victoryCondition, victoryAmount);
-			position += 4;
+            // Difficulty Level
+            recordedGame.setDifficultyLevel(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
+            // Map Size
+            recordedGame.setMapSize(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			// Unknown
-			position++;
+            // MAP ID
+            recordedGame.setMapId(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			// Unknown
-			position++;
+            // Map Visibility
+            recordedGame.setMapVisibility(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			// Team Together
-			recordedGame.setTeamTogether(headerByteArray[position] == 0);
-			position++;
+            // Victory Condition
+            int victoryCondition = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
 
-			// All Tech
-			recordedGame.setAllTech(headerByteArray[position] == 1);
-			position++;
+            // Starting Resources
+            recordedGame.setResourceLevel(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			// Unknown
-			position++;
+            // Starting Age
+            recordedGame.setStartingAge(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			// Lock Team
-			recordedGame.setLockDiplomacy(headerByteArray[position] == 1);
-			position++;
+            // Ending Age
+            recordedGame.setEndingAge(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			// Unknown 6 bytes
+            // Game Type
+            recordedGame.setGameType(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-			position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
 
-			int human;
-			for (int i = 0; i < 8; i++)
-			{
-				if (BitConverter.ToInt32(headerByteArray, position) == 3 && BitConverter.ToInt32(headerByteArray, position + 10) != 0)
-				{
-					position += 4;
+            position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
+            position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
 
-					player = new Player();
+            // Game Speed
+            recordedGame.setGameSpeed((int)(100 * BitConverter.ToSingle(headerByteArray, position)));
+            position += 4;
 
-					// Colour
-					player.colourId = BitConverter.ToInt32(headerByteArray, position) + 1;
-					position += 4;
+            // Treaty Length
+            recordedGame.setTreatyLength(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-					// FF
-					position++;
+            // Pop Limit
+            recordedGame.setPopLimit(BitConverter.ToInt32(headerByteArray, position));
+            position += 4;
 
-					player.teamIndex = headerByteArray[position] - 1;
-					position++;
-							
+            // Player Count
+            int playerCount = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
 
-					position += 9;
+            // Unknwon
+            position += 4;
 
-					player.setCivilisation(headerByteArray[position]);
-					position++;
+            // Time Limit OR Score Limit
+            int victoryAmount = BitConverter.ToInt32(headerByteArray, position);
+            recordedGame.setVictory(victoryCondition, victoryAmount);
+            position += 4;
 
-					position += 12;
+            position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
 
-					tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+            // Unknown
+            position++;
+
+            // Unknown
+            position++;
+
+            // Team Together
+            recordedGame.setTeamTogether(headerByteArray[position] == 0);
+            position++;
+
+            // All Tech
+            recordedGame.setAllTech(headerByteArray[position] == 1);
+            position++;
+
+            // Unknown
+            position++;
+
+            // Lock Team
+            recordedGame.setLockDiplomacy(headerByteArray[position] == 1);
+            position++;
+
+            // Unknown 6 bytes
+
+            position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
+
+            int human;
+            for (int i = 0; i < 8; i++)
+            {
+                if (BitConverter.ToInt32(headerByteArray, position) == 3)
+                //if (BitConverter.ToInt32(headerByteArray, position) == 3 && BitConverter.ToInt32(headerByteArray, position + 10) != 0)
+                {
+                    position += 4;
+
+                    player = new Player();
+
+                    // Colour
+                    player.colourId = BitConverter.ToInt32(headerByteArray, position) + 1;
+                    position += 4;
+
+                    // FF
+                    position++;
+
+                    player.teamIndex = headerByteArray[position] - 1;
+                    position++;
+
+
+                    position += 9;
+
+                    player.setCivilisation(headerByteArray[position]);
+                    position++;
+
+					//position += 12;
+					position += 3; 
+
+                    tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+					position += 4; // length + 60 0A
 					if (!BitConverter.IsLittleEndian)
 						Array.Reverse(tempByteArray);
 					length = (int)BitConverter.ToUInt16(tempByteArray, 0);
-					position += 2;
-
-					// -60-0A
-					position += 2;
-
-					if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
-					{
-						player.name = Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray());
-						position += (int)length;
-					}
-					else
-					{
-						player.name = "";
-					}
-
-					human = BitConverter.ToInt32(headerByteArray, position);
-					position += 4;
-
-					// Unknown, probably position
-					position += 8;
-
-					// Index
-					player.index = BitConverter.ToInt32(headerByteArray, position);
-					position += 4;
-
-					player.isHuman = human == 0x02;
-					player.isSpectator = human == 0x06;
-
-					if (human != 0 && human != 1)
-					{
-						if (!player.isSpectator)
-						{
-							if (player.teamIndex != 0)
-							{
-								if (recordedGame.teams == null)
-								{
-									recordedGame.teams = new List<Team>();
-									team = new Team();
-									team.index = player.teamIndex;
-									team.addPlayer(player.index);
-									recordedGame.teams.Add(team);
-								}
-								else if (recordedGame.teams.Exists(t => t.index == player.teamIndex))
-									recordedGame.teams.First(t => t.index == player.teamIndex).addPlayer(player.index);
-								else
-								{
-									team = new Team();
-									team.index = player.teamIndex;
-									team.addPlayer(player.index);
-									recordedGame.teams.Add(team);
-								}
-							}
-							else
-							{
-								team = new Team();
-								team.index = player.teamIndex;
-								team.addPlayer(player.index);
-								recordedGame.teams.Add(team);
-							}
-
-							player.teamListIndex = recordedGame.teams.Count - 1;
-							players[player.index] = player;
-						}
-						else
-						{
-							recordedGame.spectators.Add(player);
-						}
-					}
-				}
-				else
-				{
-					//-03-00-00-00-07-00-00-00-FF-01-00-00-00-00-00-01-00-00-00-0F-00-00-00-00-00-60-0A-00-00-00-60-0A-00-00-60-0A-01-00-00-00-00-00-00-00-00-00-00-00-FF-FF-FF-FF
-					position += 52;
-				}
-			}
-
-			// Unknown -00-00-00-00-00-00-00-00-00-01-01-01
-			//position += 12;
-
-			position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
-
-			// Unknown 12 "00" bytes "60 0A"
-			position += 14;
-
-			position += 8;
-
-			tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-			if (!BitConverter.IsLittleEndian)
-				Array.Reverse(tempByteArray);
-			length = (int)BitConverter.ToUInt16(tempByteArray, 0);
-			position += 2;
-
-			// -60-0A
-			position += 2;
-
-			// Map File Name
-			if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
-			{
-				recordedGame.setMapFileName(Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim());
-				position += length;
-			}
-
-			position += 12;
-
-			position += 24;
-
-			tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-			if (!BitConverter.IsLittleEndian)
-				Array.Reverse(tempByteArray);
-			length = (int)BitConverter.ToUInt16(tempByteArray, 0);
-			position += 2;
-
-			// -60-0A
-			position += 2;
-
-			// Lobby Name
-			if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
-			{
-				recordedGame.setLobbyName(Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim());
-				position += (int)length;
-			}
-
-			// -00-00-60-0A
-			position += 4;
-
-			position += 12;
-
-			// Miscel + Game Speed + Miscel
-			position += 53;
-
-			// Owner
-			tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-			if (!BitConverter.IsLittleEndian)
-				Array.Reverse(tempByteArray);
-			int pov = (int)BitConverter.ToUInt16(tempByteArray, 0) - 1;
-			position += 2;
-			if (players.ContainsKey(pov))
-				players[pov].owner = true;
-
-			// Player Count
-			//int numPlayers = headerByteArray[position++] - 1; // #0 is GAIA
-			position += 2;
-
-			// Game Mode
-			//tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-			//if (!BitConverter.IsLittleEndian)
-			//	Array.Reverse(tempByteArray);
-			//recordedGame.setGameMode((int)BitConverter.ToUInt16(tempByteArray, 0));
-			//position += 2;
-
-			// all 00 bytes
-			position += 61;
-			//position += 29;
-			// Map
-			int mapSizeX = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-			int mapSizeY = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-
-			if (mapSizeX >= 10000 || mapSizeY >= 10000 || mapSizeX <= 0 || mapSizeY <= 0)
-			{
-				position -= 8;
-				position += 29;
-				mapSizeX = BitConverter.ToInt32(headerByteArray, position);
-				position += 4;
-				mapSizeY = BitConverter.ToInt32(headerByteArray, position);
-				position += 4;
-				if (mapSizeX >= 10000 || mapSizeY >= 10000 || mapSizeX <= 0 || mapSizeY <= 0)
-				{
-					throw new Exception("Invalid Map Size.");
-				}
-			}
-
-			recordedGame.setMapXSize(mapSizeX);
-			recordedGame.setMapYSize(mapSizeY);
-			recordedGame.setMapTiles();
-
-			int numMapZones = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-
-			for (int i = 0; i < numMapZones; i++)
-			{
-				position += 2048 + mapSizeX * mapSizeY * 2;
-
-				int numFloats = BitConverter.ToInt32(headerByteArray, position);
-				position += 4;
-				position += numFloats * 4 + 4;
-			}
-
-			// Map Visibility, Fog of War
-			position += 2;
-
-			// Get Map Terrain and Elevation
-			for (int x = 0; x < mapSizeX; x++)
-			{
-				for (int y = 0; y < mapSizeY; y++)
-				{
-					recordedGame.setMapTile(x, y, headerByteArray[position], headerByteArray[position + 1]);
-					position += 2;
-				}
-			}
-
-			// Unknown
-			int numData = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-			position += numData * 4;
-			position += 4; // testing
-			for (int i = 0; i < numData; i++)
-			{
-				position += BitConverter.ToInt32(headerByteArray, position) * 8 + 4;
-			}
-
-			// Visibility Map
-			int mapSizeX2 = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-			int mapSizeY2 = BitConverter.ToInt32(headerByteArray, position);
-			position += 4;
-			position += mapSizeX2 * mapSizeY2 * 4; // map data
-			position += 4;
-
-			position += 8;
-			//position += 8;
-
-			Player GAIA = new Player("GAIA");
-
-			for (int i = -1; i < players.Count; i++) // starts with GAIA
-			{
-				if (i == -1)
-					player = GAIA;
-				else if (players.ContainsKey(i + 1))
-					player = players[i + 1];
-				else
-					player = new Player();
-
-				// -01-0B-03
-				position += 3;
-
-				// (player count) bytes + 00 00 00 00
-				position += players.Count + 4;
-
-				// diplomacy table
-				position += 4 * 8;
-
-				// 00 00 00 00 and ?? byte
-				position += 4;
-				// skip playername
-				tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-				if (!BitConverter.IsLittleEndian)
-					Array.Reverse(tempByteArray);
-				int playerNameLen = (int)BitConverter.ToUInt16(tempByteArray, 0);
-				position += 2;
-				position += playerNameLen;
-
-
-				position += 1; // always 22?
-				int numResources = BitConverter.ToInt32(headerByteArray, position);
-				position += 4;
-				position += 1; // always 33?
-				int resourcesEnd = position + 4 * numResources;
-
-				if (player != null)
-				{
-					player.setInitialFood((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialWood((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialStone((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialGold((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialHeadRoom((int)BitConverter.ToSingle(headerByteArray, position)); // Housing - Pop
-					position += 4;
-
-					position += 4;
-
-					// Post-Imperial Age
-					player.setInitialAge((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialPopulation((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialCivilianPopulation((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					player.setInitialMilitaryPopulation((int)BitConverter.ToSingle(headerByteArray, position));
-					position += 4;
-
-					position = resourcesEnd + 1;
-
-					player.setInitialCameraLocation(Math.Round(BitConverter.ToSingle(headerByteArray, position), 2), Math.Round(BitConverter.ToSingle(headerByteArray, position + 4), 2));
-					position += 8;
-				}
-				else
-				{
-					position = resourcesEnd + 1;
-					position += 5;
-					position += 1 + 3 + 1;
-				}
-
-
-				if (isTrial(versionConstant))
-					position += 4;
-
-				// Getting exist object positions
-				int existObjectPos = Utility.IndexOf(headerByteList, GameConstants.EXIST_OBJECT_SEPARATOR, position);
-				if (existObjectPos < 0)
-					throw new Exception("Could not find existObjectSeparator");
-				position = existObjectPos + GameConstants.EXIST_OBJECT_SEPARATOR.Length;
-
-				// PlayerObjectListAnalser
-				bool done = false;
-				int separatorPos;
-				GameUnit tempUnit = new GameUnit();
-				List<GameUnit> gaiaUnits = new List<GameUnit>();
-				List<GameUnit> playerUnits = new List<GameUnit>();
-				while (!done)
-				{
-					tempUnit = new GameUnit();
-					int objectType = headerByteArray[position];
-					tempUnit.objectType = objectType;
-					tempUnit.owner = objectType == 0 ? 0 : headerByteArray[position + 1];
-					position += 2;
-
-					tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-					if (!BitConverter.IsLittleEndian)
-						Array.Reverse(tempByteArray);
-					tempUnit.id = (int)BitConverter.ToUInt16(tempByteArray, 0);
-					position += 2;
-
-					switch (objectType)
-					{
-						case UnitType.UT_EYECANDY:
-							if (AoEResourcePack.isGaiaUnit(tempUnit.id))
-							{
-								int restore = position;
-								position += 19;
-								tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								position = restore;
-								gaiaUnits.Add(tempUnit);
-							}
-							if (headerByteArray[position] == 0)
-								// testing
-								position += 37;
-
-							position += 66;
-
-							break;
-
-						case UnitType.UT_FLAG:
-							if (isHDEdition(versionConstant))
-								position += 3;
-
-							if (isMgx(fileFormat))
-							{
-								position += 59;
-								position += headerByteArray[position] == 2 ? 39 : 5;
-							}
-							else
-								position += 103 - 4;
-
-							break;
-
-						case UnitType.UT_DEAD_OR_FISH:
-							// TODO: details needed
-							if (headerByteArray[position] != 0)
-							{
-								if (headerByteArray[position + 80] == UnitType.UT_EYECANDY || headerByteArray[position + 80] == UnitType.UT_FLAG || headerByteArray[position + 80] == UnitType.UT_DEAD_OR_FISH || headerByteArray[position + 80] == UnitType.UT_BIRD || headerByteArray[position + 80] == UnitType.UT_UNKNOWN || headerByteArray[position + 80] == UnitType.UT_PROJECTILE || headerByteArray[position + 80] == UnitType.UT_CREATABLE || headerByteArray[position + 80] == UnitType.UT_BUILDING)
-									position += 80;
-								else
-									position += 97;
-							}
-							else
-								position += 140;
-
-							//position += headerByteArray[position] == 0 ? 140 : 80;
-							//position += headerByteArray[position] == 0 ? 140 : 97;
-							break;
-
-						// TODO: Object Type 40 and 50 not included
-
-						case UnitType.UT_PROJECTILE:
-							// readProjectile not implemented
-							//position += 23;
-							position += 124;
-							break;
-
-						case UnitType.UT_CREATABLE:
-							if (AoEResourcePack.isGaiaUnit(tempUnit.id))
-							{
-								position += 19;
-								tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								gaiaUnits.Add(tempUnit);
-							}
-							else if (tempUnit.owner != 0)
-							{
-								position += 19;
-								tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								playerUnits.Add(tempUnit);
-							}
-
-							if (isMgx(fileFormat))
-							{
-								separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.AOK_OBJECT_END_SEPARATOR);
-								position += separatorPos + GameConstants.AOK_OBJECT_END_SEPARATOR.Length;
-							}
-							else
-							{
-								separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.OBJECT_END_SEPARATOR);
-								position += separatorPos + GameConstants.OBJECT_END_SEPARATOR.Length;
-							}
-
-							if (separatorPos < 0)
-								throw new Exception("Could not find OBJECT_END_SEPARATOR");
-
-
-							break;
-
-						case UnitType.UT_BUILDING:
-							if (tempUnit.owner > 0)
-							{
-								position += 19;
-								tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
-								position += 4;
-
-								playerUnits.Add(tempUnit);
-							}
-
-							if (isMgx(fileFormat))
-							{
-								separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.AOK_OBJECT_END_SEPARATOR);
-								position += separatorPos + GameConstants.AOK_OBJECT_END_SEPARATOR.Length;
-								position++;
-							}
-							else
-							{
-								separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.OBJECT_END_SEPARATOR);
-								position += separatorPos + GameConstants.OBJECT_END_SEPARATOR.Length;
-							}
-
-							if (separatorPos < 0)
-								throw new Exception("Could not find OBJECT_END_SEPARATOR");
-
-
-							position += 126;
-
-							if (isHDPatch4(versionConstant, subVersionConstant))
-								position -= 3;
-
-							break;
-
-						case 00:
-							position -= 4;
-							if (Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.GAIA_INFO_END_SEPARATOR) == 0)
-							{
-								position += GameConstants.GAIA_INFO_END_SEPARATOR.Length;
-								done = true;
-								break;
-							}
-							else if (Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.PLAYER_INFO_END_SEPARATOR) == 0)
-							{
-								position += GameConstants.PLAYER_INFO_END_SEPARATOR.Length;
-								done = true;
-								break;
-							}
-							else if (Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.OBJECT_MID_SEPARATOR_GAIA) == 0)
-							{
-								position += GameConstants.OBJECT_MID_SEPARATOR_GAIA.Length;
-							}
-							else
-							{
-								throw new Exception("Could not find GAIA object separator");
-							}
-
-							break;
-						default:
-							throw new Exception("Unknown object type " + objectType.ToString());
-					}
-				}
-				//player.units = playerUnits;
-			}
-
-			position = scenarioHeaderPos;
-			// 4096 00 bytes
-			position += 4096;
-			// 16 -FE-FF-FF-FF
-			position += 16 * 4;
-			// String Table, 16 rows, 4 Int each
-			position += 16 * 4 * 4;
-			// -01-00-00-00-00-00-00-00-00-00-00
-			position += 11;
-			// 6 -FE-FF-FF-FF
-			position += 6 * 4;
-
-			tempByteArray = headerByteList.GetRange(position, 2).ToArray();
-			if (!BitConverter.IsLittleEndian)
-				Array.Reverse(tempByteArray);
-			length = (int)BitConverter.ToUInt16(tempByteArray, 0);
-			position += 2;
-
-			tempByteArray = headerByteList.GetRange(position, length).ToArray();
-
-			int temp1;
-			int temp2 = 0;
-			string key;
-			string value;
-
-			temp1 = Utility.IndexOf(tempByteArray.ToList(), new byte[] { 0x3A });
-			while (temp1 > 0)
-			{
-				key = Encoding.ASCII.GetString(tempByteArray.ToList().GetRange(temp2, temp1 - temp2).ToArray()).Trim();
-				temp2 = temp1 + 1;
-				temp1 = Utility.IndexOf(tempByteArray.ToList(), new byte[] { 0x0A }, temp2);
-				temp1 = temp1 == -1 ? length - 1 : temp1;
-				value = Encoding.ASCII.GetString(tempByteArray.ToList().GetRange(temp2, temp1 - temp2).ToArray()).Trim();
-				temp2 = temp1 + 1;
-				introMessages[key] = value;
-
-				temp1 = Utility.IndexOf(tempByteArray.ToList(), new byte[] { 0x3A }, temp2);
-			}
-
-			if (introMessages.ContainsKey("Location"))
-				recordedGame.setMapId(MapType.getIdByName(introMessages["Location"].ToUpper()));
-
-			position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
-			position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
-			position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
-			position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
-
-			// 8 Integers
-			position += 32;
-
-			// 01-00-00-00
-			position += 4;
-
-			// Game Lobby
-			for (int i = 0; i < 9; i++)
-			{
-				if (BitConverter.ToInt32(headerByteArray, position) < 0)
-					position += 18;
-				else
-				{
-					// index, isHuman?
-					position += 8;
-					length = BitConverter.ToInt32(headerByteArray, position);
-					position += 4;
-					if (length > 0)
-						position += length;
-				}
-			}
-
-			// 36 00 bytes
-			position += 36;
-			// player count
-			position += 4;
-			// 85-EB-91-3F
-			position += 4;
-			// -00-00-00-00-00-00-3C
-			position += 7;
-			// 2420 00 bytes
-			position += 2420;
-
-			// Victory Settings
-			// 01-00-00-00
-			position += 4;
-			//recordedGame.setVictory(BitConverter.ToInt32(headerByteArray, position), victoryCondition);
-			position += 4;
-			recordedGame.setRelicVictory(BitConverter.ToInt32(headerByteArray, position));
-			position += 4;
-
-			// Initialise Players
-
-			position = gameSettingsPos + 32;
-
-
-			// Skip GAIA
-			//position += 20;
-
-			//for (int i = 0; i < 8; i++)
-			//{
-			//	if (BitConverter.ToInt32(headerByteArray, position) < 0)
-			//	{
-			//		position += (12 + 6);
-			//	}
-			//	else {
-
-			//		player = new Player();
-			//		player.index = BitConverter.ToInt32(headerByteArray, position);
-			//		position += 4;
-			//		human = BitConverter.ToInt32(headerByteArray, position);
-			//		position += 4;
-			//		length = (int)BitConverter.ToUInt32(headerByteArray, position);
-			//		position += 4;
-			//		if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
-			//		{
-			//			player.name = Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray());
-			//			position += (int)length;
-			//		}
-			//		else
-			//		{
-			//			player.name = "";
-			//		}
-
-			//		player.isHuman = human == 0x02;
-			//		player.isSpectator = human == 0x06;
-
-			//		if (human != 0 && human != 1)
-			//		{
-			//			players[player.index] = player;
-			//		}
-			//	}
-			//}
-
-			// Skip to Ending Blocks
-			position = Utility.LastIndexOf(headerByteList, GameConstants.CONSTANT) + GameConstants.CONSTANT.Length;
-			position += 5;
-
-			// Read Teams
-			for (int i = 0; i < 8; i++)
-			{
-				//if (players.ContainsKey(i + 1))
-					//players[i + 1].setTeamIndex(headerByteArray[position]);
-				
-				position++;
-			}
-
-			recordedGame.setMapVisibility(BitConverter.ToInt32(headerByteArray, position));
-
-			position += 8;
-
-			recordedGame.setMapSize(BitConverter.ToInt32(headerByteArray, position));
-
-			position += 4;
-
-			recordedGame.setPopLimit(BitConverter.ToInt32(headerByteArray, position));
-
-			position += 4;
-
-			//recordedGame.setGameType(headerByteArray[position]);
-
-			position++;
-
-			recordedGame.setGameMode(headerByteArray[position]);
-
-			position += 6;
-
-			string chat = "";
-			messageCount = BitConverter.ToInt32(headerByteArray, position) - 1;
-			//position += 8;
-			position += 4;
-
-			//for (int i = 0; i < messageCount - 1; i++)
-			//{
-			//	length = BitConverter.ToInt32(headerByteArray, position);
-			//	position += 4;
-
-			//	if (length > 0)
-			//	{
-			//		chat = Encoding.ASCII.GetString(headerByteList.GetRange(position, length - 1).ToArray()).Trim();
-			//		position += length;
-
-			//		string target = "";
-			//		if (chat[3] == '<' && (chat.IndexOf('>') <= 8))
-			//			target = chat.Substring(4, (chat.IndexOf('>') - 4));
-
-			//		// pre-game chat messages are stored as "@#%dPlayerName: Message",
-			//		// where %d is a digit from 1 to 8 indicating player's index (or
-			//		// colour)
-
-			//		if (int.TryParse(chat[2].ToString(), out playerIndex))
-			//		{
-			//			if (chat.Substring(0, 2) == "@#" && playerIndex >= 1 && playerIndex <= 8)
-			//			{
-			//				pregameChat.Add(new ChatMessage(-1, playerIndex, chat.Substring(chat.IndexOf(':') + 2).Trim(), target));
-			//			}
-			//		}
-			//	}
-			//}
-
-			//recordedGame.addPreGameChat(pregameChat);
-
-			recordedGame.players = players;
+					position += length + 1;
+
+                    tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+                    position += 4; // length + 60 0A
+                    if (!BitConverter.IsLittleEndian)
+                        Array.Reverse(tempByteArray);
+                    length = (int)BitConverter.ToUInt16(tempByteArray, 0);
+                    position += length;
+
+                    tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+                    if (!BitConverter.IsLittleEndian)
+                        Array.Reverse(tempByteArray);
+                    length = (int)BitConverter.ToUInt16(tempByteArray, 0);
+                    position += 2;
+
+                    // -60-0A
+                    position += 2;
+
+                    if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
+                    {
+                        player.name = Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray());
+                        position += (int)length;
+                    }
+                    else
+                    {
+                        player.name = "";
+                    }
+
+                    human = BitConverter.ToInt32(headerByteArray, position);
+                    position += 4;
+
+                    // Unknown, probably position
+                    position += 8;
+
+                    // Index
+                    player.index = BitConverter.ToInt32(headerByteArray, position);
+                    position += 4;
+
+                    player.isHuman = human == 0x02;
+                    player.isSpectator = human == 0x06;
+
+                    if (human != 0 && human != 1)
+                    {
+                        if (!player.isSpectator)
+                        {
+                            if (player.teamIndex != 0)
+                            {
+                                if (recordedGame.teams == null)
+                                {
+                                    recordedGame.teams = new List<Team>();
+                                    team = new Team();
+                                    team.index = player.teamIndex;
+                                    team.addPlayer(player.index);
+                                    recordedGame.teams.Add(team);
+                                }
+                                else if (recordedGame.teams.Exists(t => t.index == player.teamIndex))
+                                    recordedGame.teams.First(t => t.index == player.teamIndex).addPlayer(player.index);
+                                else
+                                {
+                                    team = new Team();
+                                    team.index = player.teamIndex;
+                                    team.addPlayer(player.index);
+                                    recordedGame.teams.Add(team);
+                                }
+                            }
+                            else
+                            {
+                                team = new Team();
+                                team.index = player.teamIndex;
+                                team.addPlayer(player.index);
+                                recordedGame.teams.Add(team);
+                            }
+
+                            player.teamListIndex = recordedGame.teams.Count - 1;
+                            players[player.index] = player;
+                        }
+                        else
+                        {
+                            recordedGame.spectators.Add(player);
+                        }
+                    }
+                }
+                else
+                {
+                    //-03-00-00-00-07-00-00-00-FF-01-00-00-00-00-00-01-00-00-00-0F-00-00-00-00-00-60-0A-00-00-00-60-0A-00-00-60-0A-01-00-00-00-00-00-00-00-00-00-00-00-FF-FF-FF-FF
+                    position += 52;
+                }
+            }
+
+            // Unknown -00-00-00-00-00-00-00-00-00-01-01-01
+            //position += 12;
+
+            position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR.Length;
+
+            // Unknown 12 "00" bytes "60 0A"
+            //position += 14;
+
+            //position += 8;
+            recordedGame.isRanked = headerByteArray[position] == 1;
+            position += 10;
+
+            tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+            if (!BitConverter.IsLittleEndian)
+                Array.Reverse(tempByteArray);
+            length = (int)BitConverter.ToUInt16(tempByteArray, 0);
+            position += 2;
+
+            // -60-0A
+            position += 2;
+
+            // Map File Name
+            if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
+            {
+                recordedGame.setMapFileName(Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim());
+                position += length;
+            }
+
+            position += 8;
+
+            tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+            if (!BitConverter.IsLittleEndian)
+                Array.Reverse(tempByteArray);
+            length = (int)BitConverter.ToUInt16(tempByteArray, 0);
+            position += 2;
+
+            // -60-0A
+            position += 2;
+
+            if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
+            {
+                recordedGame.setMapFileName(Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim());
+                position += length;
+            }
+
+            position += 12;
+
+            position += 24;
+
+            tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+            if (!BitConverter.IsLittleEndian)
+                Array.Reverse(tempByteArray);
+            length = (int)BitConverter.ToUInt16(tempByteArray, 0);
+            position += 2;
+
+            // -60-0A
+            position += 2;
+
+            // Lobby Name
+            if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
+            {
+                recordedGame.setLobbyName(Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim());
+                position += (int)length;
+            }
+
+            // -00-00-60-0A
+            position += 4;
+
+			position = Utility.IndexOf(headerByteList, GameConstants.AOE2_RECORD_HEADER_SEPARATOR_2, position) + GameConstants.AOE2_RECORD_HEADER_SEPARATOR_2.Length;
+
+            position += 4;
+            // Miscel + Game Speed + Miscel
+
+            if (BitConverter.ToInt32(headerByteArray, position) > 0)
+            {
+                position += 1040846;
+            }
+
+			position += 49;
+
+            // Owner
+            tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+            if (!BitConverter.IsLittleEndian)
+                Array.Reverse(tempByteArray);
+            int pov = (int)BitConverter.ToUInt16(tempByteArray, 0) - 1;
+            position += 2;
+            if (players.ContainsKey(pov))
+                players[pov].owner = true;
+
+            // Player Count
+            //int numPlayers = headerByteArray[position++] - 1; // #0 is GAIA
+            position += 2;
+
+            // Game Mode
+            //tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+            //if (!BitConverter.IsLittleEndian)
+            //	Array.Reverse(tempByteArray);
+            //recordedGame.setGameMode((int)BitConverter.ToUInt16(tempByteArray, 0));
+            //position += 2;
+
+            // all 00 bytes
+            position += 61;
+            //position += 29;
+            // Map
+            int mapSizeX = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
+            int mapSizeY = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
+
+            if (mapSizeX >= 10000 || mapSizeY >= 10000 || mapSizeX <= 0 || mapSizeY <= 0)
+            {
+                position -= 8;
+                position += 29;
+                mapSizeX = BitConverter.ToInt32(headerByteArray, position);
+                position += 4;
+                mapSizeY = BitConverter.ToInt32(headerByteArray, position);
+                position += 4;
+                if (mapSizeX >= 10000 || mapSizeY >= 10000 || mapSizeX <= 0 || mapSizeY <= 0)
+                {
+                    throw new Exception("Invalid Map Size.");
+                }
+            }
+
+            recordedGame.setMapXSize(mapSizeX);
+            recordedGame.setMapYSize(mapSizeY);
+            recordedGame.setMapTiles();
+
+            int numMapZones = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
+
+            for (int i = 0; i < numMapZones; i++)
+            {
+                position += 2048 + mapSizeX * mapSizeY * 2;
+
+                int numFloats = BitConverter.ToInt32(headerByteArray, position);
+                position += 4;
+                position += numFloats * 4 + 4;
+            }
+
+            // Map Visibility, Fog of War
+            position += 2;
+
+            // Get Map Terrain and Elevation
+            for (int x = 0; x < mapSizeX; x++)
+            {
+                for (int y = 0; y < mapSizeY; y++)
+                {
+                    recordedGame.setMapTile(x, y, headerByteArray[position], headerByteArray[position + 1]);
+                    position += 2;
+                }
+            }
+
+            // Unknown
+            int numData = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
+            position += numData * 4;
+            position += 4; // testing
+            for (int i = 0; i < numData; i++)
+            {
+                position += BitConverter.ToInt32(headerByteArray, position) * 8 + 4;
+            }
+
+            // Visibility Map
+            int mapSizeX2 = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
+            int mapSizeY2 = BitConverter.ToInt32(headerByteArray, position);
+            position += 4;
+            position += mapSizeX2 * mapSizeY2 * 4; // map data
+            position += 4;
+
+            position += 8;
+            //position += 8;
+
+            // skip rest of header if its a crashed recorded game
+            if (!(headerByteArray[position + 8] == 146 && headerByteArray[position + 9] == 11))
+            {
+
+                Player GAIA = new Player("GAIA");
+
+                for (int i = -1; i < players.Count; i++) // starts with GAIA
+                {
+                    if (i == -1)
+                        player = GAIA;
+                    else if (players.ContainsKey(i + 1))
+                        player = players[i + 1];
+                    else
+                        player = new Player();
+
+                    // -01-0B-03
+                    position += 3;
+
+                    // (player count) bytes + 00 00 00 00
+                    position += players.Count + 4;
+
+                    // diplomacy table
+                    position += 4 * 8;
+
+                    // 00 00 00 00 and ?? byte
+                    position += 4;
+                    // skip playername
+                    tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+                    if (!BitConverter.IsLittleEndian)
+                        Array.Reverse(tempByteArray);
+                    int playerNameLen = (int)BitConverter.ToUInt16(tempByteArray, 0);
+                    position += 2;
+                    position += playerNameLen;
+
+
+                    position += 1; // always 22?
+                    int numResources = BitConverter.ToInt32(headerByteArray, position);
+                    position += 4;
+                    position += 1; // always 33?
+                    int resourcesEnd = position + 4 * numResources;
+
+                    if (player != null)
+                    {
+                        player.setInitialFood((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialWood((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialStone((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialGold((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialHeadRoom((int)BitConverter.ToSingle(headerByteArray, position)); // Housing - Pop
+                        position += 4;
+
+                        position += 4;
+
+                        // Post-Imperial Age
+                        player.setInitialAge((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialPopulation((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialCivilianPopulation((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        player.setInitialMilitaryPopulation((int)BitConverter.ToSingle(headerByteArray, position));
+                        position += 4;
+
+                        position = resourcesEnd + 1;
+
+                        player.setInitialCameraLocation(Math.Round(BitConverter.ToSingle(headerByteArray, position), 2), Math.Round(BitConverter.ToSingle(headerByteArray, position + 4), 2));
+                        position += 8;
+                    }
+                    else
+                    {
+                        position = resourcesEnd + 1;
+                        position += 5;
+                        position += 1 + 3 + 1;
+                    }
+
+
+                    if (isTrial(versionConstant))
+                        position += 4;
+
+                    // Getting exist object positions
+                    int existObjectPos = Utility.IndexOf(headerByteList, GameConstants.EXIST_OBJECT_SEPARATOR, position);
+                    if (existObjectPos < 0)
+                        throw new Exception("Could not find existObjectSeparator");
+                    position = existObjectPos + GameConstants.EXIST_OBJECT_SEPARATOR.Length;
+
+                    // PlayerObjectListAnalser
+                    bool done = false;
+                    int separatorPos;
+                    GameUnit tempUnit = new GameUnit();
+                    List<GameUnit> gaiaUnits = new List<GameUnit>();
+                    List<GameUnit> playerUnits = new List<GameUnit>();
+                    while (!done)
+                    {
+                        tempUnit = new GameUnit();
+                        int objectType = headerByteArray[position];
+                        tempUnit.objectType = objectType;
+                        tempUnit.owner = objectType == 0 ? 0 : headerByteArray[position + 1];
+                        position += 2;
+
+                        tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+                        if (!BitConverter.IsLittleEndian)
+                            Array.Reverse(tempByteArray);
+                        tempUnit.id = (int)BitConverter.ToUInt16(tempByteArray, 0);
+                        position += 2;
+
+                        tempUnit.gameObjectId = BitConverter.ToInt32(headerByteArray, position + 14);
+
+                        switch (objectType)
+                        {
+                            case UnitType.UT_EYECANDY:
+                                if (AoEResourcePack.isGaiaUnit(tempUnit.id))
+                                {
+                                    int restore = position;
+                                    position += 19;
+                                    tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    position = restore;
+                                    gaiaUnits.Add(tempUnit);
+                                }
+                                if (headerByteArray[position] == 0)
+                                    // testing
+                                    position += 37;
+
+                                position += 66;
+                                recordedGame.units.Add(tempUnit);
+                                break;
+
+                            case UnitType.UT_FLAG:
+                                if (isHDEdition(versionConstant))
+                                    position += 3;
+
+                                if (isMgx(fileFormat))
+                                {
+                                    position += 59;
+                                    position += headerByteArray[position] == 2 ? 39 : 5;
+                                }
+                                else
+                                    position += 103 - 4;
+
+                                recordedGame.units.Add(tempUnit);
+                                break;
+
+                            case UnitType.UT_DEAD_OR_FISH:
+                                // TODO: details needed
+                                if (headerByteArray[position] != 0)
+                                {
+                                    if (headerByteArray[position + 80] == UnitType.UT_EYECANDY || headerByteArray[position + 80] == UnitType.UT_FLAG || headerByteArray[position + 80] == UnitType.UT_DEAD_OR_FISH || headerByteArray[position + 80] == UnitType.UT_BIRD || headerByteArray[position + 80] == UnitType.UT_UNKNOWN || headerByteArray[position + 80] == UnitType.UT_PROJECTILE || headerByteArray[position + 80] == UnitType.UT_CREATABLE || headerByteArray[position + 80] == UnitType.UT_BUILDING)
+                                        position += 80;
+                                    else
+                                        position += 97;
+                                }
+                                else
+                                    position += 140;
+
+                                //position += headerByteArray[position] == 0 ? 140 : 80;
+                                //position += headerByteArray[position] == 0 ? 140 : 97;
+                                if (headerByteArray[position] == UnitType.UT_PROJECTILE)
+                                    position += 128;
+
+                                recordedGame.units.Add(tempUnit);
+                                break;
+
+                            // TODO: Object Type 40 and 50 not included
+
+                            case UnitType.UT_PROJECTILE:
+                                // readProjectile not implemented
+                                //position += 23;
+                                position += 124;
+                                break;
+
+                            case UnitType.UT_CREATABLE:
+                                if (AoEResourcePack.isGaiaUnit(tempUnit.id))
+                                {
+                                    position += 19;
+                                    tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    gaiaUnits.Add(tempUnit);
+                                }
+                                else if (tempUnit.owner != 0)
+                                {
+                                    position += 19;
+                                    tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    playerUnits.Add(tempUnit);
+                                }
+
+                                if (isMgx(fileFormat))
+                                {
+                                    separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.AOK_OBJECT_END_SEPARATOR);
+                                    position += separatorPos + GameConstants.AOK_OBJECT_END_SEPARATOR.Length;
+                                }
+                                else
+                                {
+                                    separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.OBJECT_END_SEPARATOR);
+                                    position += separatorPos + GameConstants.OBJECT_END_SEPARATOR.Length;
+                                }
+
+                                if (separatorPos < 0)
+                                    throw new Exception("Could not find OBJECT_END_SEPARATOR");
+
+                                recordedGame.units.Add(tempUnit);
+                                break;
+
+                            case UnitType.UT_BUILDING:
+                                if (tempUnit.owner > 0)
+                                {
+                                    position += 19;
+                                    tempUnit.positionX = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    tempUnit.positionY = Math.Round(BitConverter.ToSingle(headerByteArray, position));
+                                    position += 4;
+
+                                    playerUnits.Add(tempUnit);
+                                }
+
+                                if (isMgx(fileFormat))
+                                {
+                                    separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.AOK_OBJECT_END_SEPARATOR);
+                                    position += separatorPos + GameConstants.AOK_OBJECT_END_SEPARATOR.Length;
+                                    position++;
+                                }
+                                else
+                                {
+                                    separatorPos = Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.OBJECT_END_SEPARATOR);
+                                    position += separatorPos + GameConstants.OBJECT_END_SEPARATOR.Length;
+                                }
+
+                                if (separatorPos < 0)
+                                    throw new Exception("Could not find OBJECT_END_SEPARATOR");
+
+
+                                position += 126;
+
+                                if (isHDPatch4(versionConstant, subVersionConstant))
+                                    position -= 3;
+
+                                recordedGame.units.Add(tempUnit);
+                                break;
+
+                            case 00:
+                                position -= 4;
+                                if (Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.GAIA_INFO_END_SEPARATOR) == 0)
+                                {
+                                    position += GameConstants.GAIA_INFO_END_SEPARATOR.Length;
+                                    done = true;
+                                    break;
+                                }
+                                else if (Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.PLAYER_INFO_END_SEPARATOR) == 0)
+                                {
+                                    position += GameConstants.PLAYER_INFO_END_SEPARATOR.Length;
+                                    done = true;
+                                    break;
+                                }
+                                else if (Utility.IndexOf(headerByteList.GetRange(position, headerByteList.Count - position), GameConstants.OBJECT_MID_SEPARATOR_GAIA) == 0)
+                                {
+                                    position += GameConstants.OBJECT_MID_SEPARATOR_GAIA.Length;
+                                }
+                                else
+                                {
+                                    throw new Exception("Could not find GAIA object separator");
+                                }
+
+                                break;
+                            default:
+                                throw new Exception("Unknown object type " + objectType.ToString());
+                        }
+                    }
+                    //player.units = playerUnits;
+                }
+
+                position = scenarioHeaderPos;
+                // 4096 00 bytes
+                position += 4096;
+                // 16 -FE-FF-FF-FF
+                position += 16 * 4;
+                // String Table, 16 rows, 4 Int each
+                position += 16 * 4 * 4;
+                // -01-00-00-00-00-00-00-00-00-00-00
+                position += 11;
+                // 6 -FE-FF-FF-FF
+                position += 6 * 4;
+
+                tempByteArray = headerByteList.GetRange(position, 2).ToArray();
+                if (!BitConverter.IsLittleEndian)
+                    Array.Reverse(tempByteArray);
+                length = (int)BitConverter.ToUInt16(tempByteArray, 0);
+                position += 2;
+
+                tempByteArray = headerByteList.GetRange(position, length).ToArray();
+
+                int temp1;
+                int temp2 = 0;
+                string key;
+                string value;
+
+                temp1 = Utility.IndexOf(tempByteArray.ToList(), new byte[] { 0x3A });
+                while (temp1 > 0)
+                {
+                    key = Encoding.ASCII.GetString(tempByteArray.ToList().GetRange(temp2, temp1 - temp2).ToArray()).Trim();
+                    temp2 = temp1 + 1;
+                    temp1 = Utility.IndexOf(tempByteArray.ToList(), new byte[] { 0x0A }, temp2);
+                    temp1 = temp1 == -1 ? length - 1 : temp1;
+                    value = Encoding.ASCII.GetString(tempByteArray.ToList().GetRange(temp2, temp1 - temp2).ToArray()).Trim();
+                    temp2 = temp1 + 1;
+                    introMessages[key] = value;
+
+                    temp1 = Utility.IndexOf(tempByteArray.ToList(), new byte[] { 0x3A }, temp2);
+                }
+
+                //if (introMessages.ContainsKey("Location"))
+                //recordedGame.setMapId(MapType.getIdByName(introMessages["Location"].ToUpper()));
+
+                position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
+                position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
+                position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
+                position = Utility.IndexOf(headerByteList, GameConstants.SEPARATOR, position) + GameConstants.SEPARATOR.Length;
+
+                // 8 Integers
+                position += 32;
+
+                // 01-00-00-00
+                position += 4;
+
+                // Game Lobby
+                for (int i = 0; i < 9; i++)
+                {
+                    if (BitConverter.ToInt32(headerByteArray, position) < 0)
+                        position += 18;
+                    else
+                    {
+                        // index, isHuman?
+                        position += 8;
+                        length = BitConverter.ToInt32(headerByteArray, position);
+                        position += 4;
+                        if (length > 0)
+                            position += length;
+                    }
+                }
+
+                // 36 00 bytes
+                position += 36;
+                // player count
+                position += 4;
+                // 85-EB-91-3F
+                position += 4;
+                // -00-00-00-00-00-00-3C
+                position += 7;
+                // 2420 00 bytes
+                position += 2420;
+
+                // Victory Settings
+                // 01-00-00-00
+                position += 4;
+                //recordedGame.setVictory(BitConverter.ToInt32(headerByteArray, position), victoryCondition);
+                position += 4;
+                recordedGame.setRelicVictory(BitConverter.ToInt32(headerByteArray, position));
+                position += 4;
+
+                // Initialise Players
+
+                position = gameSettingsPos + 32;
+
+
+                // Skip GAIA
+                //position += 20;
+
+                //for (int i = 0; i < 8; i++)
+                //{
+                //	if (BitConverter.ToInt32(headerByteArray, position) < 0)
+                //	{
+                //		position += (12 + 6);
+                //	}
+                //	else {
+
+                //		player = new Player();
+                //		player.index = BitConverter.ToInt32(headerByteArray, position);
+                //		position += 4;
+                //		human = BitConverter.ToInt32(headerByteArray, position);
+                //		position += 4;
+                //		length = (int)BitConverter.ToUInt32(headerByteArray, position);
+                //		position += 4;
+                //		if (length > 0 && Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray()).Trim() != "")
+                //		{
+                //			player.name = Encoding.ASCII.GetString(headerByteList.GetRange(position, length).ToArray());
+                //			position += (int)length;
+                //		}
+                //		else
+                //		{
+                //			player.name = "";
+                //		}
+
+                //		player.isHuman = human == 0x02;
+                //		player.isSpectator = human == 0x06;
+
+                //		if (human != 0 && human != 1)
+                //		{
+                //			players[player.index] = player;
+                //		}
+                //	}
+                //}
+
+                // Skip to Ending Blocks
+                position = Utility.LastIndexOf(headerByteList, GameConstants.CONSTANT) + GameConstants.CONSTANT.Length;
+                position += 5;
+
+                // Read Teams
+                for (int i = 0; i < 8; i++)
+                {
+                    //if (players.ContainsKey(i + 1))
+                    //players[i + 1].setTeamIndex(headerByteArray[position]);
+
+                    position++;
+                }
+
+                recordedGame.setMapVisibility(BitConverter.ToInt32(headerByteArray, position));
+
+                position += 8;
+
+                recordedGame.setMapSize(BitConverter.ToInt32(headerByteArray, position));
+
+                position += 4;
+
+                recordedGame.setPopLimit(BitConverter.ToInt32(headerByteArray, position));
+
+                position += 4;
+
+                //recordedGame.setGameType(headerByteArray[position]);
+
+                position++;
+
+                recordedGame.setGameMode(headerByteArray[position]);
+
+                position += 6;
+
+                string chat = "";
+                messageCount = BitConverter.ToInt32(headerByteArray, position) - 1;
+                //position += 8;
+                position += 4;
+
+                //for (int i = 0; i < messageCount - 1; i++)
+                //{
+                //	length = BitConverter.ToInt32(headerByteArray, position);
+                //	position += 4;
+
+                //	if (length > 0)
+                //	{
+                //		chat = Encoding.ASCII.GetString(headerByteList.GetRange(position, length - 1).ToArray()).Trim();
+                //		position += length;
+
+                //		string target = "";
+                //		if (chat[3] == '<' && (chat.IndexOf('>') <= 8))
+                //			target = chat.Substring(4, (chat.IndexOf('>') - 4));
+
+                //		// pre-game chat messages are stored as "@#%dPlayerName: Message",
+                //		// where %d is a digit from 1 to 8 indicating player's index (or
+                //		// colour)
+
+                //		if (int.TryParse(chat[2].ToString(), out playerIndex))
+                //		{
+                //			if (chat.Substring(0, 2) == "@#" && playerIndex >= 1 && playerIndex <= 8)
+                //			{
+                //				pregameChat.Add(new ChatMessage(-1, playerIndex, chat.Substring(chat.IndexOf(':') + 2).Trim(), target));
+                //			}
+                //		}
+                //	}
+                //}
+
+                //recordedGame.addPreGameChat(pregameChat);
+            }
+
+            recordedGame.players = players;
 
 			//body section
 
 			position = 0;
+            GameUnit tempNewUnit = new GameUnit();
 			int next = -1;
 
 			while (position < bodyByteArray.Length - 3)
@@ -2384,6 +2440,11 @@ namespace GameAnalyser
 
 					switch (command)
 					{
+                        case CommandType.COMMAND_MOVE:
+							playerIndex = bodyByteArray[position++];
+							position += 2;
+                            break;
+
 						case CommandType.COMMAND_RESIGN:
 							playerIndex = bodyByteArray[position++];
 							position += 2;
@@ -2474,6 +2535,16 @@ namespace GameAnalyser
 							currentTime = BitConverter.ToInt32(bodyByteArray, position);
 
 							recordedGame.addTrainCommand(-1, unitType, amount, currentTime);
+
+                            for (int m = 0; m < amount; m ++)
+                            {
+								tempNewUnit = new GameUnit();
+								tempNewUnit.id = unitType;
+								tempNewUnit.owner = playerIndex;
+                                tempNewUnit.gameObjectId = recordedGame.units[recordedGame.units.Count - 1].gameObjectId + 1;
+                                recordedGame.units.Add(tempNewUnit);
+                            }
+
 							break;
 
 						// Train Single Unit (AI)
@@ -2491,6 +2562,7 @@ namespace GameAnalyser
 
 						// Building
 						case CommandType.COMMAND_BUILD:
+                        case CommandType.COMMAND_BUILD_2:
 							position++;
 
 							tempByteArray = bodyByteList.GetRange(position, 2).ToArray();
@@ -2508,6 +2580,12 @@ namespace GameAnalyser
 							position += 2;
 
 							buildingId = AoEResourcePack.normaliseUnit(buildingId);
+
+							tempNewUnit = new GameUnit();
+							tempNewUnit.id = buildingId;
+							tempNewUnit.owner = playerIndex;
+							tempNewUnit.gameObjectId = recordedGame.units[recordedGame.units.Count - 1].gameObjectId + 1;
+							recordedGame.units.Add(tempNewUnit);
 
 							recordedGame.addBuildCommand(playerIndex, buildingId, currentTime);
 							break;
@@ -2803,6 +2881,21 @@ namespace GameAnalyser
 			}
 
 			recordedGame.setVictors();
+
+            List<GameUnit> relics = recordedGame.units.Where(c => c.id == 285).ToList();
+            double distance = 0;
+
+            foreach (Player p in recordedGame.players.Values)
+            {
+                distance = 0;
+                foreach (GameUnit relic in relics)
+                {
+                    distance += Math.Sqrt(Math.Pow(relic.positionX - p.initialState.position[0], 2.0) + Math.Pow(relic.positionX - p.initialState.position[0], 2.0));
+
+                }
+
+                p.averageRelicDistance = distance / relics.Count;
+            }
 
 			return recordedGame;
 		}

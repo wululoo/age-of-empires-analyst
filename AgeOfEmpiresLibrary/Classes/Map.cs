@@ -1,4 +1,6 @@
 ﻿using System;
+using Urho.Urho2D;
+
 namespace AgeOfEmpiresLibrary
 {
 	public class Map
@@ -13,10 +15,20 @@ namespace AgeOfEmpiresLibrary
 		public int ySize;
 
 		private Tile[,] tiles;
+        private TileMap2D tilemap;
 
 		public Map()
 		{
 		}
+
+        public Map(int id, int size, int visibility)
+        {
+            this.id = id;
+            this.size = size;
+            this.visibility = visibility;
+
+            this.name = MapSetting.getNameFromId(id);
+        }
 
 		public void setMapFileName(string name)
 		{
@@ -31,6 +43,8 @@ namespace AgeOfEmpiresLibrary
 		public void setMapSize(int mapSize)
 		{
 			this.size = mapSize;
+
+
 		}
 
 		public void setMapVisibility(int v)
@@ -38,10 +52,14 @@ namespace AgeOfEmpiresLibrary
 			visibility = v;
 		}
 
-		public void setMapTiles()
+		public void setMapDimension(int x, int y)
 		{
-			if (xSize > 0 && ySize > 0)
-				tiles = new Tile[xSize, ySize];
+            if (x > 0 && y > 0)
+            {
+                tiles = new Tile[x, y];
+                xSize = x;
+                ySize = y;
+            }
 		}
 	}
 }
